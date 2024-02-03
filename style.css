@@ -1,0 +1,204 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+}
+
+.header {
+    text-align: center;
+    padding: 50px 0;
+    background-color: #333;
+    color: #fff;
+}
+
+h1, h2, h3 {
+    margin: 0;
+    font-size: 2em;
+}
+
+p {
+    margin: 10px 0;
+}
+
+.about, .projects, .social {
+    padding: 50px;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease-out forwards;
+}
+#project1, #project11, #project12{
+    width: 400px;
+}
+
+.profile-picture img {
+    width: 200px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.project-card {
+    background-color: #e0e0e0;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 8px;
+    text-align: left;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.project-card img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.project-card:hover {
+    background-color: #d3d3d3;
+}
+
+.social a {
+    display: inline-block;
+    margin: 10px;
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease-in-out;
+}
+
+.social a:hover {
+    color: #007bff;
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.social a i {
+    margin-right: 5px;
+}
+
+
+@media (max-width: 768px) {
+    .profile-picture img {
+        width: 150px;
+    }
+}
+.about ul.skills-list {
+    list-style: none;
+    padding: 0;
+}
+
+.about ul.skills-list li {
+    display: flex;
+    align-items: center;
+    background-color: #000000;
+    color: #fff;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.about ul.skills-list i {
+    margin-right: 5px;
+}
+.projects .project-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+.projects .project-card:hover {
+    transform: scale(1.05);
+}
+
+.social a {
+    display: inline-block;
+    margin: 10px;
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease-in-out;
+}
+
+.social a:hover {
+    color: #007bff;
+    transform: translateY(-3px);
+}
+.about .fade-in-out {
+    opacity: 0;
+    animation: fadeInOut 2s ease-in-out infinite alternate;
+}
+
+@keyframes fadeInOut {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.about .fade-in-out {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+.skills-list li {
+    display: flex;
+    align-items: center;
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.skills-list i {
+    margin-right: 5px;
+}
+
+.projects .project-card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.projects .project-card:hover {
+    transform: scale(1.05);
+}
+
+.social a {
+    display: inline-block;
+    margin: 10px;
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.social a:hover {
+    color: #007bff;
+    transform: translateY(-3px);
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+}
