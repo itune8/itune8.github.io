@@ -1,75 +1,1319 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <title>Sahil's - Portfolio</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sahil Portfolio</title>
+  <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+    <script>
+        'use strict';
+const nav = document.querySelector('.mobile-nav');
+const navMenuBtn = document.querySelector('.nav-menu-btn');
+const navCloseBtn = document.querySelector('.nav-close-btn');
+
+const navToggleFunc = function () { nav.classList.toggle('active'); }
+
+navMenuBtn.addEventListener('click', navToggleFunc);
+navCloseBtn.addEventListener('click', navToggleFunc);
+
+
+const themeBtn = document.querySelectorAll('.theme-btn');
+
+
+for (let i = 0; i < themeBtn.length; i++) {
+
+  themeBtn[i].addEventListener('click', function () {
+    document.body.classList.toggle('light-theme');
+    document.body.classList.toggle('dark-theme');
+
+    for (let i = 0; i < themeBtn.length; i++) {
+      themeBtn[i].classList.toggle('light');
+      themeBtn[i].classList.toggle('dark');
+
+    }
+
+  })
+
+}
+    </script>
+    <style>
+body{
+  background-color: rgb(192, 238, 238);
+}
+.blog-card {
+   
+}
+
+.tags {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px; 
+}
+
+.skill-item {
+    text-align: center;
+}
+
+.light-theme {
+
+
+--background-primary: hsl(0, 0%, 100%);
+--background-secondary: hsl(0, 0%, 97%);
+
+--action-primary: hsl(214, 32%, 91%);
+--action-secondary: hsl(210, 38%, 95%);
+
+--foreground-primary: hsl(218, 23%, 23%);
+--foreground-secondary: hsl(216, 15%, 52%);
+--foreground-tertiary: hsl(214, 20%, 69%);
+
+--accent: hsl(229, 76%, 66%);
+
+}
+
+.dark-theme {
+
+--background-primary: hsl(218, 23%, 23%);
+--background-secondary: hsl(220, 26%, 14%);
+
+--action-primary: hsl(216, 15%, 52%);
+--action-secondary: hsl(218, 23%, 23%);
+
+--foreground-primary: hsl(210, 38%, 95%);
+--foreground-secondary: hsl(211, 25%, 84%);
+--foreground-tertiary: hsl(214, 20%, 69%);
+
+--accent: hsl(229, 76%, 66%);
+
+}
+
+:root {
+--white: hsl(0, 0%, 100%);
+
+--fs-base: 0.85rem;
+--fs-1: 1.875rem;
+--fs-2: 1.5rem;
+--fs-3: 1.25rem;
+--fs-4: 0.875rem;
+--fs-5: 0.75rem;
+
+--py: 5rem;
+
+}
+
+*, *::before, *::after {
+margin:  0;
+padding: 0;
+box-sizing: border-box;
+}
+
+a { text-decoration: none; }
+
+li { list-style: none; }
+
+img, button { display: block; }
+
+a, span { display: inline-block; }
+
+button {
+font: inherit;
+border: none;
+background: none;
+cursor: pointer;
+}
+
+html {
+font-family: "Inter", sans-serif;
+font-size: var(--fs-base); 
+line-height: 1.8;
+}
+
+:focus { outline-offset: 4px; }
+::-webkit-scrollbar { width: 16px; }
+
+
+::-webkit-scrollbar-thumb {
+background: var(--accent);
+border-radius: 20px;
+border: 4px solid;
+}
+
+.light-theme::-webkit-scrollbar-thumb { border-color: hsl(0, 0%, 90%); }
+
+.dark-theme::-webkit-scrollbar-thumb { border-color: hsl(219, 27%, 20%); }
+
+.light-theme::-webkit-scrollbar-track { background: hsl(0, 0%, 90%); }
+
+.dark-theme::-webkit-scrollbar-track { background: hsl(219, 27%, 20%); }
+
+.h1,.h2,.h3,.h4 
+{
+display: block;
+color: var(--foreground-primary);
+}
+
+.h1 {
+font-size: var(--fs-1);
+font-weight: 900;
+}
+
+.h2 {
+font-size: var(--fs-2);
+font-weight: 700;
+}
+
+.h3 {
+font-size: var(--fs-3);
+font-weight: 700;
+}
+
+.h4 {
+font-size: var(--fs-4);
+font-weight: 700;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px; }
+
+.grid-item {
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.grid-item img {
+    transition: transform 0.3s ease-in-out;
+}
+
+.grid-item:hover img {
+    transform: scale(1.1); 
+}
+
+.hashtag {
+    display: none; 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff; 
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+}
+
+.grid-item:hover .hashtag {
+    display: inline-block;
+}
+
+.neon-glow {
+    box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff00e5, 0 0 70px #ff00e5;
+}
+
+.text-sm { font-size: var(--fs-4); }
+
+.text-tiny { font-size: var(--fs-5); }
+
+.container {
+margin-inline: auto;
+margin: auto;
+padding: 0 15px;
+}
+
+.btn {
+min-width: 10rem;
+border-radius: 100px;
+}
+
+.btn-primary {
+background: var(--accent);
+color: var(--white);
+padding: 0.6875rem 1.1875rem;
+}
+
+.btn-primary:hover {
+background: var(--foreground-secondary);
+color: var(--action-primary);
+}
+
+.btn-secondary {
+background: var(--action-secondary);
+color: var(--foreground-secondary);
+padding: 0.5rem 1rem;
+border: 3px solid var(--foreground-tertiary);
+}
+
+.btn-secondary:hover { border-color: var(--accent); }
+
+.dark-theme .btn-primary:hover { color: var(--background-primary); }
+
+.dark-theme .blog-topic {
+background: var(--action-primary);
+color: var(--foreground-secondary);
+}
+
+.dark-theme .blog-topic:hover {
+background: var(--foreground-primary);
+color: var(--action-primary);
+}
+
+.dark-theme .load-more:hover { color: var(--white); }
+
+.dark-theme .aside .h2 { color: var(--foreground-primary); }
+
+header { background: var(--background-primary); }
+
+header .flex-wrapper { display: none; }
+
+.navbar {
+display:         flex;
+justify-content: space-between;
+align-items:     center;
+gap: 15px;
+padding: 15px 0;
+}
+
+.logo-light,
+.logo-dark { display: none; }
+
+.light-theme .logo-light,
+.dark-theme .logo-dark { display: block; }
+
+header .btn-group {
+display:     flex;
+align-items: center;
+gap: 15px;
+}
+
+.theme-btn-mobile,
+.nav-menu-btn,
+.nav-close-btn {
+background: var(--action-secondary);
+color: var(--foreground-tertiary);
+width:  40px;
+height: 40px;
+display:         flex;
+justify-content: center;
+align-items:     center;
+border-radius: 50%;
+font-size: 25px;
+}
+
+:is(.theme-btn-mobile,
+.nav-menu-btn,
+.nav-close-btn):hover {
+background: var(--accent);
+color: var(--white);
+}
+
+.theme-btn-mobile ion-icon { display: none; }
+
+.theme-btn-mobile.light .sun,
+.theme-btn-mobile.dark .moon { display: block; }
+
+.mobile-nav {
+position: fixed;
+inset: 0;
+background: var(--background-primary);
+padding: 70px 20px;
+overflow: auto;
+overscroll-behavior: contain;
+transform: translateX(100%);
+visibility: hidden;
+transition: 0.5s cubic-bezier(1, 0, 0.30, 0.70);
+z-index: 10;
+}
+
+.mobile-nav.active {
+transform: translateX(0);
+visibility: visible;
+}
+
+.nav-close-btn {
+position: absolute;
+top:   20px;
+right: 20px;
+}
+
+.mobile-nav .wrapper {
+padding-bottom: 1.25rem;
+margin-bottom:  1.25rem;
+border-bottom: 1px solid var(--action-primary);
+}
+
+.mobile-nav .nav-title { margin-bottom: 1rem; }
+
+.mobile-nav .nav-item { margin-bottom: 0.5rem; }
+
+.mobile-nav .nav-link {
+font-size: var(--fs-3);
+color: var(--foreground-secondary);
+}
+
+.mobile-nav .nav-link:hover { color: var(--accent); }
+
+.hero {
+background: var(--background-primary);
+padding-top:    2rem;
+padding-bottom: var(--py);
+text-align: center;
+}
+
+.hero .h1 {
+margin-bottom: 1rem;
+line-height: 1.6;
+}
+
+.hero b {
+color: var(--accent);
+font-weight: inherit;
+}
+
+.hero .h3 {
+color: var(--foreground-secondary);
+margin-bottom: 2rem;
+}
+
+.hero .btn-group {
+display:         flex;
+justify-content: center;
+flex-wrap:       wrap;
+gap: 15px;
+text-align: center;
+}
+
+.hero .right { display: none; }
+
+.main {
+background: var(--background-secondary);
+padding: var(--py) 0;
+}
+
+.blog .h2 {
+line-height: 1.3;
+margin-bottom: 3rem;
+text-align: center;
+}
+
+.blog-card-group { margin-bottom: 3rem; }
+
+.blog-card {
+background: var(--background-primary);
+padding: 10px;
+margin-bottom: 1rem;
+border-radius: 10px;
+box-shadow: 0 10px 10px hsla(0, 0%, 0%, 0.05);
+transition: 0.25s ease;
+}
+
+.blog-card:hover {
+transform: translateY(-2px);
+box-shadow: 0 10px 10px hsla(0, 0%, 0%, 0.1);
+}
+
+.blog-card-banner { display: none; }
+
+.blog-content-wrapper { padding: 10px 5px; }
+
+.blog-topic {
+background: var(--action-secondary);
+color: var(--foreground-secondary);
+font-weight: 600;
+padding: 0.25rem 1rem;
+border-radius: 5px;
+margin-bottom: 1rem;
+}
+
+.blog-topic:hover {
+background: var(--foreground-secondary);
+color: var(--action-secondary);
+}
+
+.blog-card .h3 {
+line-height: 1.4;
+margin-bottom: 1rem;
+}
+
+.blog-card .h3:hover {
+text-decoration: underline;
+text-decoration-thickness: 2px;
+}
+
+.blog-text,
+.profile-wrapper { display: none; }
+
+.blog .wrapper {
+display:         flex;
+justify-content: space-between;
+align-items:     center;
+flex-wrap:       wrap;
+gap: 15px;
+}
+
+.blog .h4 { color: var(--foreground-secondary); }
+
+.blog .h4:hover { color: var(--accent); }
+
+.blog .text-sm {
+display:     flex;
+align-items: center;
+gap: 5px;
+color: var(--foreground-tertiary);
+}
+
+.blog .separator {
+background: var(--foreground-tertiary);
+margin-inline: 3px;
+margin: 0 3px; 
+width:  3px;
+height: 3px;
+border-radius: 3px;
+}
+
+.blog ion-icon { --ionicon-stroke-width: 50px; }
+
+.load-more {
+margin-inline: auto;
+margin: auto; 
+background: var(--foreground-secondary);
+color: var(--background-secondary);
+padding: 0.6875rem 1.1875rem;
+}
+
+.load-more:hover { background: var(--accent); }
+
+
+.aside { display: none; }
+
+footer { background: var(--background-primary); }
+
+footer .container {
+padding: var(--py) 15px;
+display: grid;
+grid-template-columns: 1fr;
+gap: 30px;
+}
+
+footer .wrapper { text-align: center; }
+
+.footer-logo { margin-bottom: 10px; }
+
+.footer-text {
+color: var(--foreground-secondary);
+max-width: 300px;
+margin-inline: auto;
+margin: auto;
+}
+
+.footer-title {
+color: var(--foreground-primary);
+font-weight: 700;
+margin-bottom: 0.4rem;
+}
+
+.footer-link { color: var(--foreground-secondary); }
+
+.footer-link:hover { color: var(--accent); }
+
+.copyright {
+color: var(--foreground-secondary);
+font-size: var(--fs-4);
+text-align: center;
+padding: 1rem;
+border-top: 1px solid var(--action-primary);
+}
+
+.copyright a {
+color: var(--accent);
+font-weight: 500;
+}
+
+.copyright a:hover { text-decoration: underline; }
+
+@media (min-width: 550px) {
+
+:root {
+  --fs-base: 0.90rem;
+}
+
+.blog-card {
+  display: grid;
+  grid-template-columns: 3fr 4fr;
+  gap: 20px;
+}
+
+.blog-card-banner {
+  display: block;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.blog-banner-img {
+  width:  100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+}
+
+@media (min-width: 650px) {
+
+:root {
+  --fs-1: 2.25rem;
+}
+
+.container { 
+    padding: 0 30px; 
+}
+
+.navbar { 
+    padding: 30px 0;
+ }
+
+.blog .h2 {
+  position: relative;
+  text-align: left;
+  padding-left: 2rem;
+}
+
+.blog .h2::before {
+  content: '';
+  position: absolute;
+  top:  0;
+  left: 0;
+  background: var(--action-primary);
+  width:  5px;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.blog-text,
+.profile-wrapper { display: block; }
+
+.blog-text {
+  color: var(--foreground-secondary);
+  font-size: var(--fs-4);
+  display: -webkit-box;
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.blog .wrapper-flex {
+  display:         flex;
+  justify-content: start;
+  align-items:     center;
+  gap: 10px;
+}
+
+.profile-wrapper {
+  width:  56px;
+  height: 56px;
+  background: var(--action-primary);
+  padding: 3px;
+  border-radius: 50%;
+}
+
+.profile-wrapper img { border-radius: 50%; }
+
+.blog .wrapper {
+  flex-direction: column;
+  align-items: start;
+  gap: 0;
+}
+
+footer .container {
+  padding: var(--py) 30px;
+  grid-template-columns: 2fr 1fr 1fr;
+}
+
+footer .wrapper { text-align: left; }
+
+.footer-text { margin: 0; }
+
+}
+
+@media (min-width: 768px) {
+
+
+.container { max-width: 800px; }
+
+}
+
+@media (min-width: 1024px) {
+
+:root {
+
+  --fs-base: 1rem;
+  --fs-1: 3rem;
+
+}
+.container { max-width: 1150px; }
+
+
+header .btn-group { display: none; }
+
+header .flex-wrapper {
+  display: flex;
+  gap: 30px;
+}
+
+.desktop-nav {
+  display:     flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.desktop-nav .nav-link {
+  color: var(--foreground-secondary);
+  font-weight: 700;
+}
+
+.desktop-nav .nav-link:hover { color: var(--accent); }
+
+.theme-btn-desktop {
+  position: relative;
+  background: var(--background-secondary);
+  color: var(--white);
+  width:  52px;
+  height: 26px;
+  display:         flex;
+  justify-content: center;
+  align-items:     center;
+  gap: 10px;
+  border-radius: 100px;
+}
+
+.theme-btn-desktop.light {
+  background: linear-gradient(45deg, hsl(7, 100%, 71%), hsl(46, 100%, 65%));
+}
+
+.theme-btn-desktop.dark {
+  background: linear-gradient(45deg, hsl(225, 100%, 60%), hsl(296, 80%, 40%));
+}
+
+.theme-btn-desktop::before {
+  content: '';
+  position: absolute;
+  background: var(--white);
+  width:  21px;
+  height: 21px;
+  border-radius: 30px;
+  top: 50%;
+  left: 3px;
+  transform: translateY(-50%);
+  box-shadow: 0 2px 10px -2px hsla(0, 0%, 0%, 0.05);
+  z-index: 2;
+}
+
+.theme-btn-desktop.dark::before { left: calc(100% - 24px); }
+
+
+.hero { text-align: left; }
+
+.hero .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 50px;
+}
+
+.hero .btn-group {
+  justify-content: start;
+  gap: 30px;
+}
+
+.hero .right {
+  position: relative;
+  display:         flex;
+  justify-content: center;
+  align-items:     center;
+}
+
+.hero .pattern-bg {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 200px;
+  background: url(../images/pattern.png);
+  background-size: contain;
+  opacity: 0.2;
+}
+
+.hero .img-box {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-img {
+  width:  100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 0 0 280px 230px;
+  transform: translate(10px, -10px);
+}
+
+.hero .shape {
+  position: absolute;
+  top:  50%;
+  left: 50%;
+  border-radius: 50%;
+  transform: translate(-50%, -42%) rotate(-20deg);
+}
+
+.hero .shape-1 {
+  background: var(--accent);
+  width:  90%;
+  height: 90%;
+  z-index: -1;
+}
+
+.hero .shape-2 {
+  width:  92%;
+  height: 92%;
+  box-shadow: inset 0 -30px 0 var(--action-primary);
+  z-index: 2;
+}
+
+
+.main .container {
+  display: grid;
+  grid-template-columns: 5fr 2fr;
+  gap: 60px;
+}
+
+
+.aside {
+  display: block;
+  align-self: stretch;
+}
+
+.aside .h2 {
+  color: var(--foreground-secondary);
+  margin-bottom: 3rem;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.aside .wrapper {
+  background: var(--background-primary);
+  border-radius: 10px;
+  padding: 40px;
+  box-shadow: 0 5px 5px hsla(0, 0%, 0%, 0.05);
+}
+
+.topics { margin-bottom: 3rem; }
+
+.topic-btn {
+  display:     flex;
+  align-items: stretch;
+  background: var(--background-primary);
+  border-radius: 10px;
+  box-shadow: 0 5px 5px hsla(0, 0%, 0%, 0.05);
+  overflow: hidden;
+}
+
+.topic-btn:not(:last-child) { margin-bottom: 1rem; }
+
+.topic-btn .icon-box {
+  font-size: 22px;
+  width: 70px;
+  display:         flex;
+  justify-content: center;
+  align-items:     center;
+  background: var(--action-primary);
+  color: var(--foreground-secondary);
+}
+
+.topic-btn:hover .icon-box {
+  background: var(--accent);
+  color: var(--white);
+}
+
+.topic-btn ion-icon { --ionicon-stroke-width: 40px; }
+
+.topic-btn p {
+  padding: 15px;
+  color: var(--foreground-secondary);
+  font-weight: 700;
+}
+
+.tags { margin-bottom: 3rem; }
+
+.tags .wrapper {
+  display:   flex;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+}
+
+.tags .hashtag {
+  background: var(--action-primary);
+  color: var(--foreground-secondary);
+  padding: 5px 10px;
+  font-size: var(--fs-5);
+  font-weight: 700;
+  border-radius: 5px;
+}
+
+.tags .hashtag:hover {
+  background: var(--foreground-secondary);
+  color: var(--action-primary);
+}
+
+.contact { margin-bottom: 3rem; }
+
+.contact p {
+  color: var(--foreground-secondary);
+  margin-bottom: 1rem;
+}
+
+.social-link {
+  display:         flex;
+  justify-content: center;
+  align-items:     center;
+  gap: 10px;
+}
+
+.social-link .icon-box {
+  width:  45px;
+  height: 45px;
+  background: var(--action-secondary);
+  border-radius: 50%;
+  display:         flex;
+  justify-content: center;
+  align-items:     center;
+  font-size: 22px;
+}
+
+.social-link .discord { color: hsl(235, 86%, 65%); }
+
+.social-link .twitter { color: hsl(203, 89%, 53%); }
+
+.social-link .facebook { color: hsl(220, 46%, 48%); }
+
+.social-link .icon-box:hover {
+  background: var(--accent);
+  color: var(--white);
+}
+
+.newsletter {
+  position: sticky;
+  top: 3rem;
+  margin-bottom: 98px;
+}
+
+.newsletter p {
+  color: var(--foreground-secondary);
+  margin-bottom: 1rem;
+}
+
+.newsletter input {
+  border: none;
+  background: var(--action-primary);
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font: inherit;
+  color: var(--foreground-secondary);
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+.newsletter input::placeholder { color: inherit; }
+
+.newsletter input:focus {
+  outline: 2px solid;
+  outline-offset: 0;
+}
+
+.newsletter .btn-primary {
+  margin-inline: auto;
+  margin: auto; 
+}
+
+
+
+.footer-title { font-size: 1.125rem; }
+
+.footer-link { margin-bottom: 0.3rem; }
+
+}
+    </style>
+
+
+
+
+
+
 </head>
-<body>
-    <header class="header">
-        <h1>Sahil</h1>
-        <p>I love solving real-life problems using technology and creating rigorous self tempting projects. Also, I like pushing myself and taking up new challenges</p>
-    </header>
+<body class="light-theme">
+  <header>
+    <div class="container">
+      <nav class="navbar">
+        
 
-    <section class="about">
-        <div class="profile-picture">
-            <img src="1706941823844-min.jpg" alt="Your Name">
+        <div class="btn-group">
+
+          <button class="theme-btn theme-btn-mobile light">
+            <ion-icon name="moon" class="moon"></ion-icon>
+            <ion-icon name="sunny" class="sun"></ion-icon>
+          </button>
+
+          <button class="nav-menu-btn">
+            <ion-icon name="menu-outline"></ion-icon>
+          </button>
+
         </div>
-        <h2>About Me</h2>
-        <p class="fade-in-out">
+
+        <div class="flex-wrapper">
+
+          <ul class="desktop-nav">
+
+            <li>
+                <img src="projectlogo.png" height="50px" width="50px">
+              <a href="#Put ur own details" class="nav-link">Projects</a>
+            </li>
+
+            <li>
+               <img src="contact-us.png" height="50px" width="50px">
+              <a href="https://www.linkedin.com/in/sahils90" class="nav-link">Linkedin</a>
+            </li>
+
+
+          </ul>
+
+          <button class="theme-btn theme-btn-desktop light">
+            <ion-icon name="moon" class="moon"></ion-icon>
+            <ion-icon name="sunny" class="sun"></ion-icon>
+          </button>
+
+        </div>
+
+        <div class="mobile-nav">
+
+          <button class="nav-close-btn">
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+
+          <div class="wrapper">
+
+            <p class="h3 nav-title">Main Menu</p>
+
+            <ul>
+              <li class="nav-item">
+                <a href="#" class="nav-link">Home</a>
+              </li>
+
+              <li class="nav-item">
+                <a href="#" class="nav-link">About Me</a>
+              </li>
+
+              <li class="nav-item">
+                <a href="#" class="nav-link">Contact</a>
+              </li>
+            </ul>
+
+          </div>
+
+
+        </div>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+  <main>
+
+    <div class="hero">
+
+      <div class="container">
+
+        <div class="left">
+
+          <h1 class="h1">
+            Hi, I'm <b>Sahil</b> a passionate web developer
+          </h1>
+
+          <p class="h3">
             Hi there! I'm Sahil, a passionate web developer with a love for creating innovative and user-friendly websites. My skills include HTML, CSS, JavaScript, and various web technologies which i'm currently working on!.
-        </p>
-        <h2>Skills</h2>
-        <ul class="skills-list">
-            <li><i class="fab fa-html5"></i> HTML5</li>
-            <li><i class="fab fa-css3-alt"></i> CSS3</li>
-            <li><i class="fab fa-js"></i> JavaScript (ES6+)</li>
-            <li><i class="fab fa-react"></i> React.js</li>
-            <li><i class="fab fa-node"></i> Node.js</li>
-            <li><i class="fab fa-java"></i> Java</li>
-            <li><i class="fab fa-git"></i> Git</li>
-            <li><i class="fas fa-mobile-alt"></i> Responsive Design</li>
-        </ul>
-    </section>
-    <section class="projects">
-        <h2>Projects</h2>
-        <div  class="project-card" onmouseover="hoverProject(this)" onmouseout="unhoverProject(this)">
-            <img src="Project1.png" alt="Project 1" height="300px" id="project1">
-            <img src="Project11.png" alt="" id="project11" height="300px">
-            <img src="Project12.png" alt="" id="project12" height="300px">
-            <h3>3-D Icon Pack</h3>
-            <p>Icon packs of different websites, when hovered "a-3d effect" dazzles up</p>
+          </p>
+
+          <div class="btn-group">
+        
+    
+          </div>
+
         </div>
-        <div class="project-card" onmouseover="hoverProject(this)" onmouseout="unhoverProject(this)">
-            <img src="Project2.png" alt="Project 2" id="project2">
-            <img src="Project21.png" alt="" id="project21">
+
+        <div class="right">
+
+          <div class="pattern-bg"></div>
+          <div class="img-box">
+            <img src="ME.jpg" class="hero-img">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+
+
+    <div class="main">
+
+      <div class="container">
+
+        <div class="blog">
+
+          <h2 class="h2">Latest Project Post</h2>
+
+          <div class="blog-card-group">
+
+            <div class="blog-card">
+
+              <div class="blog-card-banner">
+                <img src="Project1.png"
+                  width="250" class="blog-banner-img">
+              </div>
+
+              <div class="blog-content-wrapper">
+
+                <button class="blog-topic text-tiny">Project 1</button>
+
+                <h3>
+                  <a href="#" class="h3">
+                     3-D Icon Pack Set!
+                  </a>
+                </h3>
+
+                <p class="blog-text">
+                 This project is based upon 3D animated graphic redirected links via button taps! 
+                </p>
+
+                <div class="wrapper-flex">
+
+                  <div class="profile-wrapper">
+                    <img src="LOGO.png" width="50">
+                  </div>
+
+                  <div class="wrapper">
+                    <a href="https://github.com/itune8/Sociak-Media-icons.git" class="h4">3D icons</a>
+
+                    <p class="text-sm">
+                      <time datetime="2022-01-17">Feb 2, 2024</time>
+                      <span class="separator"></span>
+                      <ion-icon name="time-outline"></ion-icon>
+                      <time datetime="PT3M">3 min</time>
+                    </p>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="blog-card">
+
+              <div class="blog-card-banner">
+                <img src="Project2.png" alt="Project" width="250"
+                  class="blog-banner-img">
+              </div>
+
+              <div class="blog-content-wrapper">
+
+                <button class="blog-topic text-tiny">Project 2</button>
+
+                <h3><a href="" class="h3">Password Generator</a></h3>
+
+                <p class="blog-text">Now no more hassles of strong password inputs when we've got you covered with unique as-key passcode generator!
+                </p>
+
+                <div class="wrapper-flex">
+
+                  <div class="profile-wrapper">
+                    <img src="LOGO.png" alt="Sahil" width="50">
+                  </div>
+
+                  <div class="wrapper">
+                    <a href="https://github.com/itune8/Password-generator.git" class="h4">Password Generator</a>
+
+                    <p class="text-sm">
+                      <time datetime="2021-12-10">Feb 2, 2024</time>
+                      <span class="separator"></span>
+                      <ion-icon name="time-outline"></ion-icon>
+                      <time datetime="PT2M">2 min</time>
+                    </p>
+                  </div> </div></div></div>
+
+
+
+            <div class="blog-card">
+              
+
+            </div>
+
+
+            <div class="blog-card">
+
+             
+
+            </div>
+
+
+            <div class="blog-card">
+
             
-            <h3>Password Generator</h3>
-            <p>Had enough of creating a strong Password? we've covered you all with multiple lengths of Strong-askey Generator</p>
+
+            </div>
+
+
+            <div class="blog-card">
+                <h2>SKILLS</h2>
+                <div class="tags">
+                    <div class="skill-item">
+                        <img src="html.png" height="50px" width="50px">
+                        <button class="hash">HTML</button>
+                    </div>
+                    <div class="skill-item">
+                        <img src="css-3.png" height="50px" width="50px">
+                        <button class="hash">CSS</button>
+                    </div>
+                    <div class="skill-item">
+                        <img src="java-script.png" height="50px" width="50px">
+                        <button class="hash">JavaScript</button>
+                    </div>
+                    <div class="skill-item">
+                        <img src="java.png" height="50px" width="50px">
+                        <button class="hash">Java</button>
+                    </div>
+                    <div class="skill-item">
+                        <img src="html.png" height="50px" width="50px">
+                        <button class="hash">HTML</button>
+                    </div>
+                   
+                    <div class="skill-item">
+                        <img src="005-web-design.png" height="50px" width="50px">
+                        <button class="hash">Web-Design</button>
+                    </div>             
+                   
+                </div>
+                <p></p>
+            </div> 
+               
+         
+
         </div>
-        <!-- Add more project cards as needed -->
-    </section>
 
-    <section class="social">
-        <h2>Connect with Me</h2>
-        <a href="https://linkedin.com/in/sahils90" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-linkedin"></i> LinkedIn
-        </a>
-        <a href="https://github.com/itune8" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-github"></i> GitHub
-        </a>
-        <a href="https://twitter.com/itune_x" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-twitter"></i> Twitter
-        </a>
-        <!-- Add more social media links as needed -->
-    </section>
+      </div>
 
-    <footer class="footer">
-        <p>&copy; 2024 Sahil. Leaving soon? great time!</p>
-    </footer>
+    </div>
 
-    <script src="script.js"></script>
-</body>
+  </main>
+
+
+  <footer>
+
+    <div class="container">
+
+      <div class="wrapper">
+
+        <a href="#" class="footer-logo">
+          <img src="LOGO.png"  width="150" class="logo-light">
+          <img src="LOGO.png"  width="150" class="logo-dark">
+        </a>
+
+        <p class="footer-text">
+            <div class="grid-container">
+                <div class="grid-item" onclick="toggleNeonGlow(this)">
+                    <a href="https://instagram.com/itune_x"><img src="Insta.jpg" height="50px" width="50px">
+                    <button class="hashtag">Instagram</button></a>
+                </div>
+                <div class="grid-item" onclick="toggleNeonGlow(this)">
+                    <a href="https://github.com/itune8"><img src="Github.png" height="50px" width="50px">
+                    <button class="hashtag">GitHub</button></a>
+                </div>
+                <div class="grid-item" onclick="toggleNeonGlow(this)">
+                    <a href="https://twitter.com/itune_x"><img src="twitter.jpg" height="50px" width="50px">
+                    <button class="hashtag">Twitter</button></a>
+                </div>
+                <!-- Add kr lena -->
+            </div>
+        </p>
+        
+
+      </div>
+
+      <div class="wrapper">
+
+        <p class="footer-title">Quick Links</p>
+
+        <ul>
+
+          <li>
+            <a href="#" class="footer-link">Check Projects</a>
+          </li>
+
+          <li>
+            <a href="#" class="footer-link">About Me</a>
+          </li>
+
+          <li>
+            <a href="#" class="footer-link">Contact Me</a>
+          </li>
+
+        </ul>
+
+      </div>
+
+      <div class="wrapper">
+
+        <p class="footer-title">Github</p>
+
+        <ul>
+
+          <li>
+            <a href="#" class="footer-link">Privacy Notice</a>
+          </li>
+
+          <li>
+            <a href="#" class="footer-link">Cookie Policy</a>
+          </li>
+
+          <li>
+            <a href="#" class="footer-link">Terms Of Use</a>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+    <p class="copyright">
+      &copy; Copyright 2024 <a href="#">SAHIL</a>
+    </p>
+
+  </footer>
+  
+
 </html>
