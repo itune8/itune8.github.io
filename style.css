@@ -34,6 +34,10 @@ p {
 #project1, #project11, #project12{
     width: 400px;
 }
+#project2 , #project21{
+    height: 300px;
+    width: 600px;
+}
 
 .profile-picture img {
     width: 200px;
