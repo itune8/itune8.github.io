@@ -1,7 +1,8 @@
 ![logo](https://github.com/itune8/itune8.github.io/blob/main/SahilGit.png)
 <h1 align="center">Hello, I'm Sahil</h1>
 <h3 align="center">Back-End Developer</h3>
-<img src="https://cdn.dribbble.com/users/730703/screenshots/6581243/avento.gif" align="right" width="400">
+<img src="https://cdn.dribbble.com/users/730703/screenshots/6581243/avento.gif" style="display: block; margin-left:"200" ; width="400">
+
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=itune8&label=Profile%20views&color=0e75b6&style=flat" alt="itune8" /> </p>
 
