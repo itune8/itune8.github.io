@@ -9,7 +9,7 @@ const glass =
 const ME = {
   name: "Sahil Kumar",
   description:
-    "Hi, I’m Sahil — a Full Stack Developer and Automation Engineer at Josh Technology Group. I build clean, test-driven solutions, automate QA scripts, and collaborate directly with clients to deliver reliable, production-ready systems. With hands-on experience in frontend development, I enjoy creating seamless, responsive UIs while ensuring top-notch quality and performance.",
+    "Hi, I'm Sahil — a Front-End Engineer at Hyper Brain Labs, contributing to impactful client projects while also working with Josh Technology Group as a Software Test Engineer. I craft responsive, scalable web interfaces and ensure product reliability through automation and QA-driven development to deliver seamless, production-ready experiences.",
   location: "Gurugram, Haryana",
   github: "https://github.com/itune8",
   linkedin: "https://www.linkedin.com/in/sahils90/",
@@ -18,7 +18,7 @@ const ME = {
 
 function Typewriter() {
   const phrases = [
-    "Full Stack Developer",
+    "Front-End Engineer",
     "Automation Engineer",
     "Agile Explorer",
     "Team Leader",
@@ -111,48 +111,51 @@ export default function Portfolio() {
       <header className="sticky top-0 z-40 bg-[#0B0F1A]/80 backdrop-blur border-b border-white/10">
         <nav className="mx-auto max-w-6xl flex items-center justify-between px-4 py-3">
           
-          {/* ✅ ✨ Infinite-scrolling tech icon bar beside Sahil.dev */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="flex items-center gap-3"
+            className="relative group cursor-pointer"
           >
-            <div className="flex items-center gap-2">
-              <motion.div
-                className="flex overflow-hidden w-36 h-6 relative"
-                animate={{ x: ["0%", "-50%"] }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 12,
-                  ease: "linear",
-                }}
-              >
-                <div className="flex gap-3 shrink-0">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" className="w-6 h-6" />
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" className="w-6 h-6" />
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" className="w-6 h-6" />
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" className="w-6 h-6" />
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" className="w-6 h-6" />
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg" alt="Jira" className="w-6 h-6" />
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg" alt="Jenkins" className="w-6 h-6" />
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="Cloud" className="w-6 h-6" />
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" className="w-6 h-6" />
-                </div>
-                <div className="flex gap-3 shrink-0 ml-4">
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" className="w-6 h-6" />
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" className="w-6 h-6" />
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" className="w-6 h-6" />
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" className="w-6 h-6" />
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" className="w-6 h-6" />
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-original.svg" alt="Jira" className="w-6 h-6" />
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg" alt="Jenkins" className="w-6 h-6" />
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="Cloud" className="w-6 h-6" />
-                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" className="w-6 h-6" />
-                </div>
-              </motion.div>
-              <span className="font-semibold tracking-tight ml-2">Sahil.dev</span>
-            </div>
+            <motion.span
+              className="font-semibold tracking-tight relative z-10"
+              animate={{
+                textShadow: [
+                  "0 0 20px rgba(124, 58, 237, 0.8), 0 0 40px rgba(124, 58, 237, 0.5)",
+                  "0 0 20px rgba(236, 72, 153, 0.8), 0 0 40px rgba(236, 72, 153, 0.5)",
+                  "0 0 20px rgba(79, 70, 229, 0.8), 0 0 40px rgba(79, 70, 229, 0.5)",
+                  "0 0 20px rgba(6, 182, 212, 0.8), 0 0 40px rgba(6, 182, 212, 0.5)",
+                  "0 0 20px rgba(16, 185, 129, 0.8), 0 0 40px rgba(16, 185, 129, 0.5)",
+                  "0 0 20px rgba(124, 58, 237, 0.8), 0 0 40px rgba(124, 58, 237, 0.5)",
+                ],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            >
+              sahil.dev
+            </motion.span>
+            <motion.div
+              className="absolute -inset-4 rounded-full blur-2xl group-hover:blur-3xl transition-all duration-300"
+              animate={{
+                background: [
+                  "radial-gradient(circle, rgba(124, 58, 237, 0.6) 0%, transparent 70%)",
+                  "radial-gradient(circle, rgba(236, 72, 153, 0.6) 0%, transparent 70%)",
+                  "radial-gradient(circle, rgba(79, 70, 229, 0.6) 0%, transparent 70%)",
+                  "radial-gradient(circle, rgba(6, 182, 212, 0.6) 0%, transparent 70%)",
+                  "radial-gradient(circle, rgba(16, 185, 129, 0.6) 0%, transparent 70%)",
+                  "radial-gradient(circle, rgba(124, 58, 237, 0.6) 0%, transparent 70%)",
+                ],
+                scale: [1, 1.3, 1],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            />
           </motion.div>
 
           <div className="hidden md:flex gap-6 text-sm text-white/80">
@@ -265,55 +268,79 @@ export default function Portfolio() {
               {section === "Professional Edge" && (
                 <>
                   <h3 className="font-medium text-white mb-2">{section}</h3>
-                  <p className="text-white/70">
-                    Automation Engineer (Josh Technology Group)
+                  <p className="text-white/70 text-sm mb-1.5">
+                    • Building scalable SaaS products
                   </p>
-                  <p className="text-white/70">
-                    Bridging QA automation and front-end development to deliver
-                    end-to-end solutions for clients.
+                  <p className="text-white/70 text-sm mb-1.5">
+                    • Client-facing web solutions
+                  </p>
+                  <p className="text-white/70 text-sm mb-1.5">
+                    • QA automation & test-driven development
+                  </p>
+                  <p className="text-white/70 text-sm mb-1.5">
+                    • Agile & Scrum workflows
+                  </p>
+                  <p className="text-white/70 text-sm">
+                    • API testing & backend validation
                   </p>
                 </>
               )}
               {section === "Experience" && (
                 <>
                   <h3 className="font-medium text-white mb-2">{section}</h3>
-                  <p className="text-white/70">
-                    Ex–Trainee @ PwC (Salesforce & Cloud)
+                  <p className="text-white/70 text-sm mb-1.5">
+                    • Front-End Engineer @ Hyper Brain Labs
                   </p>
-                  <p className="text-white/70">
-                    Frontend Developer @ Prodigy InfoTech
+                  <p className="text-white/70 text-sm mb-1.5">
+                    • Software Test Engineer @ Josh Technology Group
+                  </p>
+                  <p className="text-white/70 text-sm mb-1.5">
+                    • Trainee @ PwC (Salesforce & Cloud)
+                  </p>
+                  <p className="text-white/70 text-sm">
+                    • Frontend Developer @ Prodigy InfoTech
                   </p>
                 </>
               )}
-              {section === "Achievements" && (
+                            {section === "Achievements" && (
                 <>
                   <h3 className="font-medium text-white mb-2">{section}</h3>
-                  <p className="text-white/70">🥇 2× Winner | Ideathon & Horizon’24</p>
-                  <p className="text-white/70">
-                    🥈 Runner-up | Startup Odisha x OUTR'24
+                  <p className="text-white/70 text-sm mb-1.5">
+                    • 🥇 2× Winner | Ideathon & Horizon'24
                   </p>
-                  <p className="text-white/70">
-                    🥇 Winner | HackerWar'25
+                  <p className="text-white/70 text-sm mb-1.5">
+                    • 🥈 Runner-up | Startup Odisha x OUTR'24
+                  </p>
+                  <p className="text-white/70 text-sm">
+                    • 🥇 Winner | HackerWar'25
                   </p>
                 </>
               )}
               {section === "Core Skills" && (
                 <>
                   <h3 className="font-medium text-white mb-2">{section}</h3>
-                  <p className="text-white/70">
-                    Java • Python • React • API Testing • Automation Scripts
+                  <p className="text-white/70 text-sm mb-1.5">
+                    • Java • Python • React • JavaScript
                   </p>
-                  <p className="text-white/70">
-                    Selenium | Postman | Jira | Jenkins | AWS
+                  <p className="text-white/70 text-sm mb-1.5">
+                    • API Testing • Automation Scripts
+                  </p>
+                  <p className="text-white/70 text-sm">
+                    • Selenium | Postman | Jira | Jenkins | AWS
                   </p>
                 </>
               )}
               {section === "Currently" && (
                 <>
                   <h3 className="font-medium text-white mb-2">{section}</h3>
-                  <p className="text-white/70">
-                    Automating test scripts and pipelines while building clean,
-                    responsive front-end interfaces.
+                  <p className="text-white/70 text-sm mb-1.5">
+                    • Working as Front-End Engineer
+                  </p>
+                  <p className="text-white/70 text-sm mb-1.5">
+                    • Building test scripts & automation
+                  </p>
+                  <p className="text-white/70 text-sm">
+                    • Developing scalable SaaS products
                   </p>
                 </>
               )}
@@ -324,26 +351,40 @@ export default function Portfolio() {
 
       {/* Endless Tech Line + Feature Cards */}
       <section className="mx-auto max-w-6xl px-4 pb-12">
-        <motion.div
-          initial={{ x: "100%" }}
-          animate={{ x: "-100%" }}
-          transition={{
-            repeat: Infinity,
-            duration: 20,
-            ease: "linear",
-          }}
-          className="flex items-center justify-center gap-10 text-white/80 text-sm whitespace-nowrap mb-8"
-        >
-          <p>⚡ 2× Award-winning projects</p>
-          <p>💡 Pragmatic, test-first development</p>
-          <p>🏆 Hackathons '24</p>
-          <p>HTML</p>
-          <p>CSS</p>
-          <p>JavaScript</p>
-          <p>React</p>
-          <p>☁️ Jira</p>
-          <p>☕ Java</p>
-        </motion.div>
+        <div className="overflow-hidden mb-8">
+          <motion.div
+            animate={{ x: ["-50%", "0%"] }}
+            transition={{
+              repeat: Infinity,
+              duration: 20,
+              ease: "linear",
+            }}
+            className="flex items-center gap-10 text-white/80 text-sm whitespace-nowrap"
+          >
+            <div className="flex items-center gap-10 shrink-0">
+              <p>⚡ 2× Award-winning projects</p>
+              <p>💡 Pragmatic, test-first development</p>
+              <p>🏆 Hackathons '24</p>
+              <p>HTML</p>
+              <p>CSS</p>
+              <p>JavaScript</p>
+              <p>React</p>
+              <p>☁️ Jira</p>
+              <p>☕ Java</p>
+            </div>
+            <div className="flex items-center gap-10 shrink-0">
+              <p>⚡ 2× Award-winning projects</p>
+              <p>💡 Pragmatic, test-first development</p>
+              <p>🏆 Hackathons '24</p>
+              <p>HTML</p>
+              <p>CSS</p>
+              <p>JavaScript</p>
+              <p>React</p>
+              <p>☁️ Jira</p>
+              <p>☕ Java</p>
+            </div>
+          </motion.div>
+        </div>
 
         <div className="grid md:grid-cols-3 gap-6">
           <motion.div
