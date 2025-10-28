@@ -87,6 +87,7 @@ export default function Portfolio() {
       icon: "🎓",
       video:
         "https://drive.google.com/file/d/1_2AF-FgEk8S0ZbrVo7v8mBoRIZyEgNez/preview",
+      link: "https://itune8.github.io/stutor_/",
     },
     {
       title: "LitterLift",
@@ -95,6 +96,7 @@ export default function Portfolio() {
       icon: "🗑️",
       video:
         "https://drive.google.com/file/d/152vUByZILcnee_o-SyZ206mfWms-zVfu/preview",
+      link: "https://litter-lift.vercel.app/",
     },
     {
       title: "Banking Management",
@@ -102,6 +104,7 @@ export default function Portfolio() {
       tags: ["Java", "OOPs", "MySQL"],
       icon: "🏦",
       video: null,
+      link: "http://banking-management.gt.tc/",
     },
   ];
 
@@ -522,14 +525,23 @@ export default function Portfolio() {
                 {activeProject.video ? (
                   <iframe
                     src={activeProject.video}
-                    className="w-full h-64 rounded-xl border border-white/10"
+                    className="w-full h-64 rounded-xl border border-white/10 mb-4"
                     allow="autoplay"
                   ></iframe>
                 ) : (
-                  <div className="text-center text-white/50 py-20 border border-dashed border-white/10 rounded-xl">
+                  <div className="text-center text-white/50 py-20 border border-dashed border-white/10 rounded-xl mb-4">
                     No preview available
                   </div>
                 )}
+                <a
+                  href={activeProject.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={`w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r ${accent} hover:opacity-90 transition-all font-medium`}
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  Visit Project
+                </a>
               </motion.div>
             </motion.div>
           )}
