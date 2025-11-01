@@ -87,7 +87,7 @@ export default function Portfolio() {
       icon: "🎓",
       video:
         "https://drive.google.com/file/d/1_2AF-FgEk8S0ZbrVo7v8mBoRIZyEgNez/preview",
-      link: "https://itune8.github.io/stutor_/",
+      link: "https://stutor.vercel.app",
     },
     {
       title: "LitterLift",
