@@ -1,28 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MapPin, FileDown, Github, Linkedin, ExternalLink, Play } from "lucide-react";
+import { MapPin, FileDown, Github, Linkedin, ExternalLink, Mail, ArrowRight, Code2, Briefcase, Award, CheckCircle } from "lucide-react";
 
 const accent = "from-[#7C3AED] via-[#4F46E5] to-[#06B6D4]";
-const glass =
-  "backdrop-blur-lg bg-white/5 border border-white/10 hover:shadow-lg hover:shadow-white/10 transition-all duration-300";
-
-const ME = {
-  name: "Sahil Kumar",
-  description:
-    "Hi, I'm Sahil — a Front-End Engineer at Hyper Brain Labs, contributing to impactful client projects while also working with Josh Technology Group as a Software Test Engineer. I craft responsive, scalable web interfaces and ensure product reliability through automation and QA-driven development to deliver seamless, production-ready experiences.",
-  location: "Gurugram, Haryana",
-  github: "https://github.com/itune8",
-  linkedin: "https://www.linkedin.com/in/sahils90/",
-  resume: "https://drive.google.com/file/d/1GDBc847bAkxmub1mf2ak6A6viNQMadnr/preview",
-};
 
 function Typewriter() {
-  const phrases = [
+  const roles = [
     "Front-End Engineer",
-    "Automation Engineer",
-    "Agile Explorer",
-    "Team Leader",
-    "2× Hackathon Winner",
+    "Test Automation Engineer",
+    "Adept Team Player"
   ];
 
   const [index, setIndex] = useState(0);
@@ -31,18 +17,18 @@ function Typewriter() {
   const [blink, setBlink] = useState(true);
 
   useEffect(() => {
-    const current = phrases[index];
-    const speed = reverse ? 120 : 140;
+    const current = roles[index];
+    const speed = reverse ? 50 : 100;
     const timeout = setTimeout(() => {
       setSubIndex((prev) => {
         if (!reverse && prev < current.length) return prev + 1;
         else if (!reverse && prev === current.length) {
-          setReverse(true);
+          setTimeout(() => setReverse(true), 1500);
           return prev;
         } else if (reverse && prev > 0) return prev - 1;
         else {
           setReverse(false);
-          setIndex((i) => (i + 1) % phrases.length);
+          setIndex((i) => (i + 1) % roles.length);
           return 0;
         }
       });
@@ -51,686 +37,775 @@ function Typewriter() {
   }, [subIndex, reverse, index]);
 
   useEffect(() => {
-    const blinkInterval = setInterval(() => setBlink((b) => !b), 650);
+    const blinkInterval = setInterval(() => setBlink((b) => !b), 530);
     return () => clearInterval(blinkInterval);
   }, []);
 
   return (
-    <motion.p
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      className="text-lg md:text-xl text-white/80 mt-2"
-    >
-      {phrases[index].substring(0, subIndex)}
+    <span className="inline-flex items-center">
+      {roles[index].substring(0, subIndex)}
       <span
-        className={`inline-block w-[2px] h-6 bg-white/80 ml-1 transition-opacity ${
+        className={`inline-block w-[3px] h-12 bg-cyan-400 ml-1 transition-opacity ${
           blink ? "opacity-100" : "opacity-0"
         }`}
       ></span>
-    </motion.p>
+    </span>
   );
 }
+
+const ME = {
+  name: "Sahil Kumar",
+  role: "Front-End Engineer & QA Specialist",
+  tagline: "Building exceptional digital experiences with precision and creativity",
+  location: "Gurugram, Haryana",
+  email: "sahilgulmohur@gmail.com",
+  github: "https://github.com/itune8",
+  linkedin: "https://www.linkedin.com/in/sahils90/",
+  resume: "https://drive.google.com/file/d/1uXfHXF4NcJq1R5li8U_gxunQOLxZZYWw/preview",
+};
+
+const experiences = [
+  {
+    id: 1,
+    company: "HyperBrain Labs",
+    position: "FrontEnd Developer",
+    type: "Internship",
+    duration: "Oct 2025 - Present",
+    location: "Bengaluru",
+    description: [
+      "Developed and maintained responsive front-end interfaces using React, JavaScript, and CSS improving overall UI performance by 30%",
+      "Collaborated with backend teams to integrate APIs, enhancing data-loading efficiency by 25%",
+      "Implemented UI/UX enhancements across the SaaS platform built with Next.js and Turborepo, increasing user engagement and reducing bounce rates by 20%"
+    ],
+    color: "from-purple-500 to-pink-500"
+  },
+  {
+    id: 2,
+    company: "Josh Technology Group",
+    position: "Software Test Engineer",
+    type: "Internship",
+    duration: "Jul 2025 - Nov 2025",
+    location: "Gurugram",
+    description: [
+      "Tested React-based web applications to ensure UI functionality and performance",
+      "Created 200+ test cases for frontend features including forms, buttons, and API integrations",
+      "Built automated test scripts that reduced testing time by 40%",
+      "Worked in Agile sprints to report bugs and helped developers fix issues quickly, reducing production bugs by 30%"
+    ],
+    color: "from-blue-500 to-cyan-500"
+  },
+  {
+    id: 3,
+    company: "PwC",
+    position: "Salesforce Cloud Trainee",
+    type: "Apprentenship",
+    duration: "Jul 2025 - Sep 2025",
+    location: "India",
+    description: [
+      "Trained in Cloud technologies, Salesforce CRM, automation, and data analytics",
+      "Assisted in developing cloud-based solutions and automation workflows"
+    ],
+    color: "from-orange-500 to-red-500"
+  },
+  {
+    id: 4,
+    company: "Showera",
+    position: "Web Developer",
+    type: "Internship",
+    duration: "Nov 2024 - Feb 2025",
+    location: "Remote",
+    description: [
+      "Designed and implemented backend architecture using the MVC design pattern, resulting in a 25% code maintainability improvement",
+      "Developed RESTful APIs for movie ticket booking and scanning, leading to a 30% faster booking process",
+      "Created unified APIs improving cross-platform performance by 20%"
+    ],
+    color: "from-green-500 to-emerald-500"
+  },
+  {
+    id: 5,
+    company: "TailUX",
+    position: "FrontEnd Developer",
+    type: "Internship",
+    duration: "Mar 2024 - Jun 2024",
+    location: "Remote",
+    description: [
+      "Developed frontend for e-commerce platform using React and JavaScript",
+      "Built product listing pages, shopping cart, and checkout flow with React components",
+      "Connected frontend with backend APIs to display products, manage cart, and process orders",
+      "Created responsive layouts using CSS3 and HTML5 for better mobile experience"
+    ],
+    color: "from-yellow-500 to-orange-500"
+  }
+];
+
+const projects = [
+  {
+    id: 1,
+    title: "AllowBox",
+    description: "Led 100% of front-end development for a scalable multi-tenant SaaS platform using React, Next.js, and Turborepo. Improved UI performance by ~40% and enhanced workflows across 4 major panels resulting in ~30% faster navigation.",
+    tags: ["React", "Next.js", "Turborepo", "SaaS"],
+    icon: "🏫",
+    link: "https://github.com/codewprincee/allow-box-frontend",
+    featured: true
+  },
+  {
+    id: 2,
+    title: "Stutor",
+    description: "Peer-to-peer student learning platform with sessions, reviews, smart matching, and crisp UI for seamless educational experiences.",
+    tags: ["React", "Node.js", "PostgreSQL"],
+    icon: "🎓",
+    video: "https://drive.google.com/file/d/1_2AF-FgEk8S0ZbrVo7v8mBoRIZyEgNez/preview",
+    link: "https://stutor.vercel.app",
+    featured: true
+  },
+  {
+    id: 3,
+    title: "LitterLift",
+    description: "Smart IoT solution with camera-enabled bin that captures litter, uploads to dashboard, and coordinates municipal cleanup using Google APIs.",
+    tags: ["IoT", "Computer Vision", "Maps API"],
+    icon: "🗑️",
+    video: "https://drive.google.com/file/d/152vUByZILcnee_o-SyZ206mfWms-zVfu/preview",
+    link: "https://litter-lift.vercel.app/",
+    featured: false
+  },
+  {
+    id: 4,
+    title: "Banking Management",
+    description: "Comprehensive banking management system handling user accounts, transactions, and admin analytics with secure authentication.",
+    tags: ["Java", "OOP", "MySQL"],
+    icon: "🏦",
+    link: "http://banking-management.gt.tc/",
+    featured: false
+  }
+];
+
+const skills = {
+  "Frontend": ["React", "Next.js", "JavaScript", "TypeScript", "HTML5", "CSS3", "Tailwind CSS", "Framer Motion"],
+  "Backend": ["Node.js", "REST APIs", "MVC Pattern"],
+  "Testing & QA": ["Selenium", "Test Automation", "Jest", "Postman", "API Testing"],
+  "Tools & Others": ["Git", "GitHub", "Jira", "Agile/Scrum", "Turborepo", "Vite"]
+};
 
 export default function Portfolio() {
   const [activeProject, setActiveProject] = useState(null);
   const [showResume, setShowResume] = useState(false);
-  const [showExperience, setShowExperience] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
+  const [githubContributions, setGithubContributions] = useState(477);
 
+  useEffect(() => {
+    // Fetch GitHub contributions for the entire year
+    const fetchGithubStats = async () => {
+      try {
+        // Using GitHub's contribution graph scraper
+        const username = 'itune8';
+        const year = new Date().getFullYear();
+        
+        // Fetch from GitHub's contribution SVG endpoint
+        const response = await fetch(`https://github-contributions-api.jogruber.de/v4/${username}?y=${year}`);
+        const data = await response.json();
+        
+        if (data && data.total && data.total[year]) {
+          setGithubContributions(data.total[year]);
+        } else {
+          // Fallback to 461 if API fails
+          setGithubContributions(461);
+        }
+      } catch {
+        console.log('Using default GitHub stats');
+        setGithubContributions(461);
+      }
+    };
 
+    fetchGithubStats();
+    // Refresh every 30 minutes
+    const interval = setInterval(fetchGithubStats, 30 * 60 * 1000);
+    return () => clearInterval(interval);
+  }, []);
 
-  const projects = [
-    {
-      title: "Stutor",
-      desc: "Peer-to-peer student learning platform — sessions, reviews, smart matching, and crisp UI.",
-      tags: ["React", "Node", "Postgres"],
-      icon: "🎓",
-      video:
-        "https://drive.google.com/file/d/1_2AF-FgEk8S0ZbrVo7v8mBoRIZyEgNez/preview",
-      link: "https://stutor.vercel.app",
-    },
-    {
-      title: "LitterLift",
-      desc: "Camera-enabled smart bin that snaps litter, uploads to a dashboard, and pings municipal cleanup with coordinates via Google APIs.",
-      tags: ["IoT", "Computer Vision", "Maps API"],
-      icon: "🗑️",
-      video:
-        "https://drive.google.com/file/d/152vUByZILcnee_o-SyZ206mfWms-zVfu/preview",
-      link: "https://litter-lift.vercel.app/",
-    },
-    {
-      title: "Banking Management",
-      desc: "End-to-end banking management system handling user accounts, transactions, and admin analytics.",
-      tags: ["Java", "OOPs", "MySQL"],
-      icon: "🏦",
-      video: null,
-      link: "http://banking-management.gt.tc/",
-    },
-  ];
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setActiveSection(sectionId);
+    }
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['home', 'about', 'experience', 'projects', 'skills', 'contact'];
+      const current = sections.find(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+      if (current) setActiveSection(current);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div className="min-h-screen bg-[#0B0F1A] text-white">
-      {/* Header */}
-      <header className="sticky top-0 z-40 bg-[#0B0F1A]/80 backdrop-blur border-b border-white/10">
-        <nav className="mx-auto max-w-6xl flex items-center justify-between px-4 py-3">
-          
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="relative group cursor-pointer"
-          >
-            <motion.span
-              className="font-semibold tracking-tight relative z-10"
-              animate={{
-                textShadow: [
-                  "0 0 20px rgba(124, 58, 237, 0.8), 0 0 40px rgba(124, 58, 237, 0.5)",
-                  "0 0 20px rgba(236, 72, 153, 0.8), 0 0 40px rgba(236, 72, 153, 0.5)",
-                  "0 0 20px rgba(79, 70, 229, 0.8), 0 0 40px rgba(79, 70, 229, 0.5)",
-                  "0 0 20px rgba(6, 182, 212, 0.8), 0 0 40px rgba(6, 182, 212, 0.5)",
-                  "0 0 20px rgba(16, 185, 129, 0.8), 0 0 40px rgba(16, 185, 129, 0.5)",
-                  "0 0 20px rgba(124, 58, 237, 0.8), 0 0 40px rgba(124, 58, 237, 0.5)",
-                ],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "linear",
-              }}
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0B0F1A]/90 backdrop-blur-lg border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="text-xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent"
             >
-              sahil.dev
-            </motion.span>
-            <motion.div
-              className="absolute -inset-4 rounded-full blur-2xl group-hover:blur-3xl transition-all duration-300"
-              animate={{
-                background: [
-                  "radial-gradient(circle, rgba(124, 58, 237, 0.6) 0%, transparent 70%)",
-                  "radial-gradient(circle, rgba(236, 72, 153, 0.6) 0%, transparent 70%)",
-                  "radial-gradient(circle, rgba(79, 70, 229, 0.6) 0%, transparent 70%)",
-                  "radial-gradient(circle, rgba(6, 182, 212, 0.6) 0%, transparent 70%)",
-                  "radial-gradient(circle, rgba(16, 185, 129, 0.6) 0%, transparent 70%)",
-                  "radial-gradient(circle, rgba(124, 58, 237, 0.6) 0%, transparent 70%)",
-                ],
-                scale: [1, 1.3, 1],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-            />
-          </motion.div>
+              SK
+            </motion.div>
+            
+            <div className="hidden md:flex items-center gap-8">
+              {['Home', 'About', 'Experience', 'Projects', 'Skills', 'Contact'].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => scrollToSection(item.toLowerCase())}
+                  className={`text-sm transition-colors ${
+                    activeSection === item.toLowerCase()
+                      ? 'text-white font-semibold'
+                      : 'text-white/60 hover:text-white'
+                  }`}
+                >
+                  {item}
+                </button>
+              ))}
+            </div>
 
-          <div className="hidden md:flex gap-6 text-sm text-white/80">
-            <a href="#work" className="hover:text-white">Work</a>
-            <a href="#projects" className="hover:text-white">Projects</a>
-            <button
-  onClick={() => setShowExperience(true)}
-  className="hover:text-white transition-colors"
->
-  Experience
-</button>
-
-            <a href="#contact" className="hover:text-white">Contact</a>
+            <div className="flex items-center gap-3">
+              <a href={ME.github} target="_blank" rel="noreferrer" className="p-2 rounded-lg hover:bg-white/5 transition-all">
+                <Github className="w-5 h-5" />
+              </a>
+              <a href={ME.linkedin} target="_blank" rel="noreferrer" className="p-2 rounded-lg hover:bg-white/5 transition-all">
+                <Linkedin className="w-5 h-5" />
+              </a>
+              <button
+                onClick={() => setShowResume(true)}
+                className={`px-4 py-2 rounded-lg bg-gradient-to-r ${accent} text-sm font-medium hover:opacity-90 transition-all`}
+              >
+                Resume
+              </button>
+            </div>
           </div>
-
-          <div className="flex items-center gap-2">
-            <a href={ME.github} target="_blank" className="p-2 rounded-lg hover:bg-white/5 transition-all">
-              <Github className="w-5 h-5 text-white" />
-            </a>
-            <a href={ME.linkedin} target="_blank" className="p-2 rounded-lg hover:bg-white/5 transition-all">
-              <Linkedin className="w-5 h-5 text-[#0A66C2]" />
-            </a>
-            <a href="#contact" className="ml-2">
-              <button className={`rounded-xl px-3 py-2 text-sm bg-gradient-to-r ${accent}`}>Let’s talk</button>
-            </a>
-          </div>
-        </nav>
-      </header>
+        </div>
+      </nav>
 
       {/* Hero Section */}
-      <main className="mx-auto max-w-6xl px-4 py-16 grid md:grid-cols-2 gap-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <motion.h1
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            className="text-4xl md:text-5xl font-semibold"
-          >
-            {ME.name}
-          </motion.h1>
-          <Typewriter />
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="mt-5 text-white/70 leading-relaxed max-w-lg"
-          >
-            {ME.description}
-          </motion.p>
-
+      <section id="home" className="min-h-screen flex items-center justify-center px-6 pt-20">
+        <div className="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center">
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="mt-6 flex flex-wrap gap-3 text-sm text-white/80"
+            transition={{ duration: 0.8 }}
           >
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10">
-              <MapPin className="w-4 h-4" /> {ME.location}
-            </span>
-            <a
-              href={ME.resume}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 hover:bg-white/10"
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="text-cyan-400 font-mono mb-4"
             >
-              <FileDown className="w-4 h-4" /> Résumé
-            </a>
-          </motion.div>
+              Hi, my name is
+            </motion.p>
+            
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="text-5xl md:text-7xl font-bold mb-4"
+            >
+              {ME.name}
+            </motion.h1>
+            
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="text-3xl md:text-5xl font-bold text-white/80 mb-6"
+            >
+              <Typewriter />
+            </motion.h2>
+            
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="text-lg text-white/70 mb-8 max-w-lg"
+            >
+              {ME.tagline}
+            </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.7 }}
-            className="mt-8 flex gap-3"
-          >
-            <button
-              className={`rounded-xl px-4 py-2 text-sm bg-gradient-to-r ${accent}`}
-            >
-              See my work
-            </button>
-            <a
-              href={ME.github}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-xl px-4 py-2 text-sm bg-white/10 border border-white/10 hover:bg-white/20 hover:drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] transition-all"
-            >
-              GitHub
-            </a>
-          </motion.div>
-        </motion.div>
-
-        {/* Cards Section */}
-        <div className="grid grid-cols-2 gap-4 content-start">
-          {[
-            "Professional Edge",
-            "Experience",
-            "Achievements",
-            "Core Skills",
-            "Currently",
-          ].map((section, i) => (
             <motion.div
-              key={section}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: i * 0.2 }}
-              className={`${glass} rounded-2xl p-5 hover:scale-105`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="flex items-center gap-2 text-white/60 mb-8"
             >
-              {section === "Professional Edge" && (
-                <>
-                  <h3 className="font-medium text-white mb-2">{section}</h3>
-                  <p className="text-white/70 text-sm mb-1.5">
-                    • Building scalable SaaS products
-                  </p>
-                  <p className="text-white/70 text-sm mb-1.5">
-                    • Client-facing web solutions
-                  </p>
-                  <p className="text-white/70 text-sm mb-1.5">
-                    • QA automation & test-driven development
-                  </p>
-                  <p className="text-white/70 text-sm mb-1.5">
-                    • Agile & Scrum workflows
-                  </p>
-                  <p className="text-white/70 text-sm">
-                    • API testing & backend validation
-                  </p>
-                </>
-              )}
-              {section === "Experience" && (
-                <>
-                  <h3 className="font-medium text-white mb-2">{section}</h3>
-                  <p className="text-white/70 text-sm mb-1.5">
-                    • Front-End Engineer @ Hyper Brain Labs
-                  </p>
-                  <p className="text-white/70 text-sm mb-1.5">
-                    • Software Test Engineer @ Josh Technology Group
-                  </p>
-                  <p className="text-white/70 text-sm mb-1.5">
-                    • Trainee @ PwC (Salesforce & Cloud)
-                  </p>
-                  <p className="text-white/70 text-sm">
-                    • Frontend Developer @ Prodigy InfoTech
-                  </p>
-                </>
-              )}
-                            {section === "Achievements" && (
-                <>
-                  <h3 className="font-medium text-white mb-2">{section}</h3>
-                  <p className="text-white/70 text-sm mb-1.5">
-                    • 🥇 2× Winner | Ideathon & Horizon'24
-                  </p>
-                  <p className="text-white/70 text-sm mb-1.5">
-                    • 🥈 Runner-up | Startup Odisha x OUTR'24
-                  </p>
-                  <p className="text-white/70 text-sm">
-                    • 🥇 Winner | HackerWar'25
-                  </p>
-                </>
-              )}
-              {section === "Core Skills" && (
-                <>
-                  <h3 className="font-medium text-white mb-2">{section}</h3>
-                  <p className="text-white/70 text-sm mb-1.5">
-                    • Java • Python • React • JavaScript
-                  </p>
-                  <p className="text-white/70 text-sm mb-1.5">
-                    • API Testing • Automation Scripts
-                  </p>
-                  <p className="text-white/70 text-sm">
-                    • Selenium | Postman | Jira | Jenkins | AWS
-                  </p>
-                </>
-              )}
-              {section === "Currently" && (
-                <>
-                  <h3 className="font-medium text-white mb-2">{section}</h3>
-                  <p className="text-white/70 text-sm mb-1.5">
-                    • Working as Front-End Engineer
-                  </p>
-                  <p className="text-white/70 text-sm mb-1.5">
-                    • Building test scripts & automation
-                  </p>
-                  <p className="text-white/70 text-sm">
-                    • Developing scalable SaaS products
-                  </p>
-                </>
-              )}
+              <MapPin className="w-4 h-4" />
+              <span>{ME.location}</span>
             </motion.div>
-          ))}
-        </div>
-      </main>
 
-      {/* Endless Tech Line + Feature Cards */}
-      <section className="mx-auto max-w-6xl px-4 pb-12">
-        <div className="overflow-hidden mb-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 }}
+              className="flex gap-4"
+            >
+              <button
+                onClick={() => scrollToSection('projects')}
+                className={`px-6 py-3 rounded-lg bg-gradient-to-r ${accent} font-medium hover:opacity-90 transition-all flex items-center gap-2`}
+              >
+                View My Work
+                <ArrowRight className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="px-6 py-3 rounded-lg border border-white/20 hover:bg-white/5 transition-all"
+              >
+                Get In Touch
+              </button>
+            </motion.div>
+
+            {/* GitHub & LinkedIn Stats */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9 }}
+              className="mt-8"
+            >
+              <div className="flex flex-col gap-2">
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm">
+                  <Github className="w-4 h-4 text-green-400" />
+                  <span className="text-sm text-white/70">
+                    <span className="font-semibold text-green-400">{githubContributions}</span> contributions this year
+                  </span>
+                </div>
+                
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm">
+                  <Linkedin className="w-4 h-4 text-blue-400" />
+                  <span className="text-sm text-white/70">
+                    <span className="font-semibold text-blue-400">5K+</span> post impressions
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+
           <motion.div
-            animate={{ x: ["-50%", "0%"] }}
-            transition={{
-              repeat: Infinity,
-              duration: 20,
-              ease: "linear",
-            }}
-            className="flex items-center gap-10 text-white/80 text-sm whitespace-nowrap"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="relative"
           >
-            <div className="flex items-center gap-10 shrink-0">
-              <p>⚡ 2× Award-winning projects</p>
-              <p>💡 Pragmatic, test-first development</p>
-              <p>🏆 Hackathons '24</p>
-              <p>HTML</p>
-              <p>CSS</p>
-              <p>JavaScript</p>
-              <p>React</p>
-              <p>☁️ Jira</p>
-              <p>☕ Java</p>
+            <div className="relative w-full aspect-square max-w-md mx-auto">
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full blur-3xl opacity-20 animate-pulse"></div>
+              <div className="relative rounded-full overflow-hidden border-4 border-white/10 shadow-2xl">
+                <img
+                  src="/profile.png"
+                  alt="Sahil Kumar"
+                  className="w-full h-full object-cover scale-110"
+                />
+              </div>
+              {/* Available for Work Badge */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.8, duration: 0.5 }}
+                className="absolute top-4 left-4 bg-white border-2 border-gray-200 rounded-lg px-4 py-2 shadow-xl flex items-center gap-2"
+              >
+                <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                <span className="text-black font-medium text-sm">Available for work</span>
+              </motion.div>
+              {/* Experience Badge */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1, duration: 0.5 }}
+                className="absolute bottom-8 right-0 bg-black border-2 border-white/20 rounded-lg px-4 py-2 shadow-xl"
+              >
+                <div className="text-white font-bold text-sm">1+ Years</div>
+                <div className="text-white/60 text-xs">Experience</div>
+              </motion.div>
             </div>
-            <div className="flex items-center gap-10 shrink-0">
-              <p>⚡ 2× Award-winning projects</p>
-              <p>💡 Pragmatic, test-first development</p>
-              <p>🏆 Hackathons '24</p>
-              <p>HTML</p>
-              <p>CSS</p>
-              <p>JavaScript</p>
-              <p>React</p>
-              <p>☁️ Jira</p>
-              <p>☕ Java</p>
-            </div>
-          </motion.div>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-6">
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className={`${glass} rounded-2xl p-6 hover:scale-105`}
-          >
-            <h4 className="font-medium text-white mb-3">
-              🧪 Automation & Quality Engineering
-            </h4>
-            <p className="text-white/70 mb-3">
-              Automation that scales quality and keeps products dependable.
-            </p>
-            <ul className="text-white/70 space-y-2 text-sm">
-              <li>• Smart test pipelines & CI/CD flows</li>
-              <li>• Performance validation & regression suites</li>
-              <li>• Shift-left with an analytical approach</li>
-            </ul>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.06 }}
-            className={`${glass} rounded-2xl p-6 hover:scale-105`}
-          >
-            <h4 className="font-medium text-white mb-3">
-              ☁️ Cloud, Salesforce & Analyst Mindset
-            </h4>
-            <p className="text-white/70 mb-3">
-              Bridging tech and business through data-driven insight.
-            </p>
-            <ul className="text-white/70 space-y-2 text-sm">
-              <li>• Salesforce workflows & process optimization</li>
-              <li>• Cloud deployment & integration</li>
-              <li>• Client engagement with an analytical focus</li>
-            </ul>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.12 }}
-            className={`${glass} rounded-2xl p-6 hover:scale-105`}
-          >
-            <h4 className="font-medium text-white mb-3">
-              💻 Frontend, Collaboration & Innovation
-            </h4>
-            <p className="text-white/70 mb-3">
-              Designing clean UIs and driving impact through teamwork and
-              creativity.
-            </p>
-            <ul className="text-white/70 space-y-2 text-sm">
-              <li>• React, JS interfaces</li>
-              <li>• 2× Hackathon wins & product ideathons</li>
-              <li>• Collaborative communication & agile delivery</li>
-            </ul>
           </motion.div>
         </div>
       </section>
 
-      {/* Selected Work (interactive) */}
-      <section id="projects" className="mx-auto max-w-6xl px-4 pb-16">
-        <h2 className="text-2xl font-semibold mb-6 text-center">Selected Work</h2>
-        <div className="grid md:grid-cols-3 gap-6">
-          {projects.map((project, i) => (
+      {/* About Section */}
+      <section id="about" className="min-h-screen flex items-center px-6 py-20">
+        <div className="max-w-7xl mx-auto w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-12 flex items-center gap-4">
+              <span className="text-cyan-400 font-mono text-2xl">01.</span>
+              About Me
+              <div className="flex-1 h-px bg-white/10 ml-4"></div>
+            </h2>
+
+            <div className="grid md:grid-cols-2 gap-12">
+              <div className="space-y-4 text-white/70 leading-relaxed">
+                <p>
+                  I'm a passionate Front-End Engineer with a keen eye for detail and a love for creating 
+                  seamless user experiences. Currently working at <span className="text-purple-400 font-semibold">HyperBrain Labs</span>, 
+                  I specialize in building responsive, performant web applications using modern technologies.
+                </p>
+                <p>
+                  My journey in tech has been diverse - from developing full-stack applications to ensuring 
+                  quality through rigorous testing at <span className="text-blue-400 font-semibold">Josh Technology Group</span>. 
+                  This unique combination gives me a holistic view of the development lifecycle.
+                </p>
+                <p>
+                  I'm particularly interested in SaaS platforms, performance optimization, and creating 
+                  intuitive user interfaces that solve real-world problems.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { icon: Code2, label: "Clean Code", value: "Always", subtitle: "" },
+                  { icon: Briefcase, label: "Projects", value: "5+", subtitle: "" },
+                  { icon: Award, label: "Hackathons", value: "3× Winner", subtitle: "1× Runner-up Ideathon" },
+                  { icon: CheckCircle, label: "Test Suites", value: "100+", subtitle: "Manual & Automated" }
+                ].map((stat, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="p-6 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all"
+                  >
+                    <stat.icon className="w-8 h-8 text-cyan-400 mb-3" />
+                    <div className="text-2xl font-bold mb-1">{stat.value}</div>
+                    <div className="text-sm text-white/60">{stat.label}</div>
+                    {stat.subtitle && (
+                      <div className="text-xs text-white/40 mt-1">{stat.subtitle}</div>
+                    )}
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section id="experience" className="min-h-screen flex items-center px-6 py-20">
+        <div className="max-w-7xl mx-auto w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-12 flex items-center gap-4">
+              <span className="text-cyan-400 font-mono text-2xl">02.</span>
+              Work Experience
+              <div className="flex-1 h-px bg-white/10 ml-4"></div>
+            </h2>
+
+            <div className="space-y-12">
+              {experiences.map((exp, index) => (
+                <motion.div
+                  key={exp.id}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="relative pl-8 border-l-2 border-white/10 hover:border-cyan-400/50 transition-all"
+                >
+                  <div className={`absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-gradient-to-r ${exp.color}`}></div>
+                  
+                  <div className="mb-2 flex flex-wrap items-center gap-3">
+                    <h3 className="text-2xl font-bold">{exp.position}</h3>
+                    <span className="px-3 py-1 rounded-full bg-white/5 text-xs text-cyan-400 border border-white/10">
+                      {exp.type}
+                    </span>
+                  </div>
+                  
+                  <div className="text-lg text-purple-400 mb-2">{exp.company}</div>
+                  
+                  <div className="flex flex-wrap gap-4 text-sm text-white/60 mb-4">
+                    <span>{exp.duration}</span>
+                    <span>•</span>
+                    <span>{exp.location}</span>
+                  </div>
+                  
+                  <ul className="space-y-2 text-white/70">
+                    {exp.description.map((item, i) => (
+                      <li key={i} className="flex items-start gap-3">
+                        <ArrowRight className="w-4 h-4 text-cyan-400 mt-1 flex-shrink-0" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="min-h-screen flex items-center px-6 py-20">
+        <div className="max-w-7xl mx-auto w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-12 flex items-center gap-4">
+              <span className="text-cyan-400 font-mono text-2xl">03.</span>
+              Featured Projects
+              <div className="flex-1 h-px bg-white/10 ml-4"></div>
+            </h2>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {projects.map((project, index) => (
+                <motion.div
+                  key={project.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  onClick={() => setActiveProject(project)}
+                  className={`group relative p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-cyan-400/50 transition-all cursor-pointer ${
+                    project.featured ? 'md:col-span-2' : ''
+                  }`}
+                >
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="text-4xl">{project.icon}</div>
+                    <ExternalLink className="w-5 h-5 text-white/40 group-hover:text-cyan-400 transition-colors" />
+                  </div>
+                  
+                  <h3 className="text-2xl font-bold mb-3">{project.title}</h3>
+                  <p className="text-white/70 mb-4 line-clamp-3">{project.description}</p>
+                  
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag, i) => (
+                      <span
+                        key={i}
+                        className="px-3 py-1 rounded-full bg-white/5 text-xs text-cyan-400 border border-white/10"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section id="skills" className="min-h-screen flex items-center px-6 py-20">
+        <div className="max-w-7xl mx-auto w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-12 flex items-center gap-4">
+              <span className="text-cyan-400 font-mono text-2xl">04.</span>
+              Skills & Technologies
+              <div className="flex-1 h-px bg-white/10 ml-4"></div>
+            </h2>
+
+            <div className="grid md:grid-cols-2 gap-8">
+              {Object.entries(skills).map(([category, items], index) => (
+                <motion.div
+                  key={category}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="p-6 rounded-2xl bg-white/5 border border-white/10"
+                >
+                  <h3 className="text-xl font-bold mb-4 text-cyan-400">{category}</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {items.map((skill, i) => (
+                      <span
+                        key={i}
+                        className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm hover:bg-white/10 hover:border-cyan-400/50 transition-all"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="min-h-screen flex items-center px-6 py-20">
+        <div className="max-w-3xl mx-auto w-full text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <p className="text-cyan-400 font-mono mb-4">05. What's Next?</p>
+            <h2 className="text-4xl md:text-6xl font-bold mb-6">Get In Touch</h2>
+            <p className="text-lg text-white/70 mb-12 max-w-xl mx-auto">
+              I'm currently looking for new opportunities and my inbox is always open. 
+              Whether you have a question or just want to say hi, I'll try my best to get back to you!
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+              <a
+                href={`mailto:${ME.email}`}
+                className="px-8 py-4 rounded-lg bg-gradient-to-r from-purple-500 to-cyan-500 font-medium hover:opacity-90 transition-all flex items-center gap-2"
+              >
+                <Mail className="w-5 h-5" />
+                Send Email
+              </a>
+              <a
+                href={ME.linkedin}
+                target="_blank"
+                rel="noreferrer"
+                className="px-8 py-4 rounded-lg border border-white/20 hover:bg-white/5 transition-all flex items-center gap-2"
+              >
+                <Linkedin className="w-5 h-5" />
+                LinkedIn
+              </a>
+            </div>
+
+            <div className="flex items-center justify-center gap-6">
+              <a href={ME.github} target="_blank" rel="noreferrer" className="text-white/60 hover:text-cyan-400 transition-colors">
+                <Github className="w-6 h-6" />
+              </a>
+              <a href={ME.linkedin} target="_blank" rel="noreferrer" className="text-white/60 hover:text-cyan-400 transition-colors">
+                <Linkedin className="w-6 h-6" />
+              </a>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-white/10 py-8 px-6">
+        <div className="max-w-7xl mx-auto text-center text-white/60 text-sm">
+          <p>Designed & Built by {ME.name}</p>
+          <p className="mt-2">© {new Date().getFullYear()} All rights reserved.</p>
+        </div>
+      </footer>
+
+      {/* Resume Modal */}
+      <AnimatePresence>
+        {showResume && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowResume(false)}
+          >
             <motion.div
-              key={project.title}
-              onClick={() => setActiveProject(project)}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ scale: 1.05, rotate: 1 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ duration: 0.4, delay: i * 0.15 }}
-              className={`${glass} rounded-2xl p-6 cursor-pointer relative overflow-hidden group`}
+              onClick={(e) => e.stopPropagation()}
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-[#0B0F1A] p-6 rounded-2xl shadow-2xl border border-white/10 max-w-5xl w-full max-h-[90vh] overflow-hidden"
             >
-              <motion.div
-                className="absolute inset-0 opacity-0 group-hover:opacity-10 bg-gradient-to-br from-[#7C3AED] to-[#06B6D4] transition-opacity duration-500"
-              ></motion.div>
-              <div className="absolute top-3 right-3 opacity-60 group-hover:opacity-100 transition-all">
-                <Play className="w-5 h-5 text-white/80" />
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-2xl font-bold">Resume</h3>
+                <button
+                  onClick={() => setShowResume(false)}
+                  className="text-white/60 hover:text-white text-2xl"
+                >
+                  ✕
+                </button>
               </div>
-              <div className="flex items-center gap-2 mb-3">
-                <span className="text-xl">{project.icon}</span>
-                <h4 className="text-white font-semibold text-lg">
-                  {project.title}
-                </h4>
+              <iframe
+                src={ME.resume}
+                className="w-full h-[calc(90vh-8rem)] rounded-xl border border-white/10"
+                allow="autoplay"
+              ></iframe>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Project Modal */}
+      <AnimatePresence>
+        {activeProject && (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setActiveProject(null)}
+          >
+            <motion.div
+              onClick={(e) => e.stopPropagation()}
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-[#0B0F1A] p-8 rounded-2xl shadow-2xl border border-white/10 max-w-3xl w-full"
+            >
+              <div className="flex items-start justify-between mb-6">
+                <div className="flex items-center gap-3">
+                  <span className="text-4xl">{activeProject.icon}</span>
+                  <h3 className="text-3xl font-bold">{activeProject.title}</h3>
+                </div>
+                <button
+                  onClick={() => setActiveProject(null)}
+                  className="text-white/60 hover:text-white text-2xl"
+                >
+                  ✕
+                </button>
               </div>
-              <p className="text-white/70 mb-3 text-sm">{project.desc}</p>
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
+
+              <p className="text-white/70 mb-6 leading-relaxed">{activeProject.description}</p>
+
+              {activeProject.video && (
+                <iframe
+                  src={activeProject.video}
+                  className="w-full h-64 rounded-xl border border-white/10 mb-6"
+                  allow="autoplay"
+                ></iframe>
+              )}
+
+              <div className="flex flex-wrap gap-2 mb-6">
+                {activeProject.tags.map((tag, i) => (
                   <span
-                    key={tag}
-                    className="text-xs px-2 py-1 bg-white/10 rounded-full border border-white/10 text-white/80"
+                    key={i}
+                    className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm text-cyan-400"
                   >
                     {tag}
                   </span>
                 ))}
               </div>
-            </motion.div>
-          ))}
-        </div>
 
-        {/* Modal Preview */}
-        <AnimatePresence>
-          {activeProject && (
-            <motion.div
-              className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setActiveProject(null)}
-            >
-              <motion.div
-                onClick={(e) => e.stopPropagation()}
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                className="bg-[#0B0F1A] p-6 rounded-2xl shadow-2xl border border-white/10 max-w-xl w-full relative"
+              <a
+                href={activeProject.link}
+                target="_blank"
+                rel="noreferrer"
+                className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-purple-500 to-cyan-500 hover:opacity-90 transition-all font-medium"
               >
-                <button
-                  className="absolute top-3 right-3 text-white/60 hover:text-white"
-                  onClick={() => setActiveProject(null)}
-                >
-                  ✕
-                </button>
-                <h3 className="text-xl font-semibold mb-2 flex items-center gap-2">
-                  <span>{activeProject.icon}</span> {activeProject.title}
-                </h3>
-                <p className="text-white/70 mb-4 text-sm">
-                  {activeProject.desc}
-                </p>
-                {activeProject.video ? (
-                  <iframe
-                    src={activeProject.video}
-                    className="w-full h-64 rounded-xl border border-white/10 mb-4"
-                    allow="autoplay"
-                  ></iframe>
-                ) : (
-                  <div className="text-center text-white/50 py-20 border border-dashed border-white/10 rounded-xl mb-4">
-                    No preview available
-                  </div>
-                )}
-                <a
-                  href={activeProject.link}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={`w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r ${accent} hover:opacity-90 transition-all font-medium`}
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  Visit Project
-                </a>
-              </motion.div>
+                <ExternalLink className="w-5 h-5" />
+                View Project
+              </a>
             </motion.div>
-          )}
-        </AnimatePresence>
-      </section>
-      {/* Contact Me Section */}
-<section
-  id="contact"
-  className="mx-auto max-w-6xl px-4 py-16 border-t border-white/10"
->
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.8 }}
-    className="text-center"
-  >
-    <h2 className="text-2xl font-semibold mb-4">Let’s Build Something Useful.</h2>
-    <p className="text-white/70 max-w-2xl mx-auto mb-8">
-      Blending automation with front-end craftsmanship to build smarter, faster, and beautifully intuitive digital experiences. Always excited to collaborate on
-      innovation-driven solutions that make an impact.
-    </p>
-
-    <div className="flex flex-wrap justify-center gap-4">
-      <a
-        href="mailto:sahilgulmohur@gmail.com"
-        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all"
-      >
-        ✉️ Email
-      </a>
-    
-      <a
-        href={ME.github}
-        target="_blank"
-        rel="noreferrer"
-        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all"
-      >
-        💻 GitHub
-      </a>
-      <a
-        href={ME.linkedin}
-        target="_blank"
-        rel="noreferrer"
-        className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all"
-      >
-        💼 LinkedIn
-      </a>
-      <button
-  onClick={() => setShowResume(true)}
-  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all"
->
-  📄 Résumé
-</button>
-
-    </div>
-  </motion.div>
-</section>
-{/* Résumé Modal */}
-<AnimatePresence>
-  {showResume && (
-    <motion.div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      onClick={() => setShowResume(false)}
-    >
-      <motion.div
-        onClick={(e) => e.stopPropagation()}
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.9, opacity: 0 }}
-        transition={{ duration: 0.3 }}
-        className="bg-[#0B0F1A] p-6 rounded-2xl shadow-2xl border border-white/10 max-w-4xl w-full relative"
-      >
-        <button
-          className="absolute top-3 right-3 text-white/60 hover:text-white text-xl"
-          onClick={() => setShowResume(false)}
-        >
-          ✕
-        </button>
-
-        <h3 className="text-xl font-semibold mb-4">📄 My Résumé</h3>
-        <iframe
-          src="https://drive.google.com/file/d/1GDBc847bAkxmub1mf2ak6A6viNQMadnr/preview"
-          className="w-full h-[80vh] rounded-xl border border-white/10"
-          allow="autoplay"
-        ></iframe>
-      </motion.div>
-    </motion.div>
-  )}
-</AnimatePresence>
-
-{/* Experience Modal */}
-<AnimatePresence>
-  {showExperience && (
-    <motion.div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      onClick={() => setShowExperience(false)}
-    >
-      <motion.div
-        onClick={(e) => e.stopPropagation()}
-        initial={{ scale: 0.9, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.9, opacity: 0 }}
-        transition={{ duration: 0.3 }}
-        className="bg-[#0B0F1A] p-8 rounded-2xl shadow-2xl border border-white/10 max-w-3xl w-full relative"
-      >
-        <button
-          className="absolute top-3 right-3 text-white/60 hover:text-white text-xl"
-          onClick={() => setShowExperience(false)}
-        >
-          ✕
-        </button>
-
-        <h3 className="text-2xl font-semibold mb-6 text-center">📈 My Work Journey</h3>
-
-        <div className="space-y-6">
-          {/* Josh Technology Group */}
-          <motion.div
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.4 }}
-            className="border-l-4 border-[#4F46E5] pl-4"
-          >
-            <h4 className="text-white font-semibold">Software Automation Engineer</h4>
-            <p className="text-white/60 text-sm">Josh Technology Group | Jul 2025 – Present</p>
-            <p className="text-white/70 text-sm mt-2">
-              Designing and executing automated test frameworks, debugging backend APIs, and
-              ensuring QA excellence under Agile and Scrum workflows.
-            </p>
           </motion.div>
-
-          {/* PwC */}
-          <motion.div
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-            className="border-l-4 border-[#06B6D4] pl-4"
-          >
-            <h4 className="text-white font-semibold">Cloud Technology Trainee</h4>
-            <p className="text-white/60 text-sm">PwC India | Jul 2025 – Sep 2025</p>
-            <p className="text-white/70 text-sm mt-2">
-              Trained in Salesforce CRM, Cloud automation, and data analytics; contributed to
-              scalable workflow optimization.
-            </p>
-          </motion.div>
-
-          {/* Prodigy InfoTech */}
-          <motion.div
-            initial={{ x: -50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.4, delay: 0.4 }}
-            className="border-l-4 border-[#7C3AED] pl-4"
-          >
-            <h4 className="text-white font-semibold">Frontend Developer Intern</h4>
-            <p className="text-white/60 text-sm">Prodigy InfoTech | Aug 2024 – Sep 2024</p>
-            <p className="text-white/70 text-sm mt-2">
-              Developed clean, responsive interfaces using React, CSS, and JavaScript, reducing
-              load time by 25% and improving user engagement.
-            </p>
-          </motion.div>
-        </div>
-      </motion.div>
-    </motion.div>
-  )}
-</AnimatePresence>
-
-
-
-
-      {/* Footer */}
-      <footer className="mx-auto max-w-6xl px-4 py-10 text-white/60 text-sm">
-        <div className="flex items-center justify-between">
-          <div>
-            © {new Date().getFullYear()} Sahil Kumar — Built with care.
-          </div>
-          <div className="flex gap-4">
-            <a href={ME.github} target="_blank" rel="noreferrer">
-              GitHub
-            </a>
-            <a href={ME.linkedin} target="_blank" rel="noreferrer">
-              LinkedIn
-            </a>
-          </div>
-        </div>
-      </footer>
-    </div>
+        )}
+      </AnimatePresence>
+₹    </div>
   );
 }
