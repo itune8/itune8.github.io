@@ -412,6 +412,9 @@ export default function Portfolio() {
                   loop
                   muted
                   playsInline
+                  controls={false}
+                  disablePictureInPicture
+                  controlsList="nodownload nofullscreen noremoteplayback"
                 />
               </div>
               {/* Available for Work Badge */}
