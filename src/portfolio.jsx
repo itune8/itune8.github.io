@@ -197,15 +197,35 @@ export default function Portfolio() {
     // Ensure video plays on mount and after any pause
     const video = videoRef.current;
     if (video) {
-      video.play().catch(() => {
-        // Autoplay was prevented, try again on user interaction
-        document.addEventListener('click', () => video.play(), { once: true });
-      });
+      const playVideo = () => {
+        video.play().catch((error) => {
+          console.log('Autoplay prevented:', error);
+        });
+      };
+
+      // Try to play immediately
+      playVideo();
       
       // Force replay if video pauses
-      video.addEventListener('pause', () => {
-        video.play();
-      });
+      video.addEventListener('pause', playVideo);
+      video.addEventListener('ended', playVideo);
+      
+      // Also try on user interaction
+      const handleInteraction = () => {
+        playVideo();
+        document.removeEventListener('touchstart', handleInteraction);
+        document.removeEventListener('click', handleInteraction);
+      };
+      
+      document.addEventListener('touchstart', handleInteraction);
+      document.addEventListener('click', handleInteraction);
+
+      return () => {
+        video.removeEventListener('pause', playVideo);
+        video.removeEventListener('ended', playVideo);
+        document.removeEventListener('touchstart', handleInteraction);
+        document.removeEventListener('click', handleInteraction);
+      };
     }
   }, []);
 
@@ -421,7 +441,7 @@ export default function Portfolio() {
           >
             <div className="relative w-full aspect-square max-w-xl mx-auto">
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-cyan-500 blur-3xl opacity-20 animate-pulse"></div>
-              <div className="relative aspect-square overflow-hidden border-4 border-white/10 shadow-2xl rounded-2xl">
+              <div className="relative aspect-square overflow-hidden border-4 border-white/10 shadow-2xl rounded-2xl bg-black">
                 <video
                   ref={videoRef}
                   className="w-full h-full object-cover"
@@ -430,10 +450,12 @@ export default function Portfolio() {
                   muted
                   playsInline
                   preload="auto"
+                  webkit-playsinline="true"
+                  x5-playsinline="true"
                   style={{ pointerEvents: 'none' }}
                 >
-                  <source src="https://drive.google.com/uc?export=download&id=1wfEaecn2ddPCAtNL6pWnKzuOiYnb0AGI" type="video/quicktime" />
-                  <source src="/Profile_vid.mov" type="video/quicktime" />
+                  <source src="/Profile_vid.mov" type="video/mp4" />
+                  Your browser does not support the video tag.
                 </video>
               </div>
               {/* Available for Work Badge */}
