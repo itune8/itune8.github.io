@@ -403,14 +403,15 @@ export default function Portfolio() {
             className="relative"
           >
             <div className="relative w-full aspect-square max-w-md mx-auto">
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full blur-3xl opacity-20 animate-pulse"></div>
-              <div className="relative overflow-hidden border-4 border-white/10 shadow-2xl">
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-cyan-500 blur-3xl opacity-20 animate-pulse"></div>
+              <div className="relative aspect-square overflow-hidden border-4 border-white/10 shadow-2xl rounded-2xl">
                 <video
                   src="/Profile_vid.mov"
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-cover"
                   autoPlay
                   loop
                   muted
+                  playsInline
                 />
               </div>
               {/* Available for Work Badge */}
