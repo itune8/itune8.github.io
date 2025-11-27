@@ -402,19 +402,14 @@ export default function Portfolio() {
             transition={{ delay: 0.5, duration: 0.8 }}
             className="relative"
           >
-            <div className="relative w-full aspect-square max-w-md mx-auto">
+            <div className="relative w-full aspect-square max-w-xl mx-auto">
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-cyan-500 blur-3xl opacity-20 animate-pulse"></div>
               <div className="relative aspect-square overflow-hidden border-4 border-white/10 shadow-2xl rounded-2xl">
-                <video
-                  src="/Profile_vid.mov"
-                  className="w-full h-full object-cover"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  controls={false}
-                  disablePictureInPicture
-                  controlsList="nodownload nofullscreen noremoteplayback"
+                <iframe
+                  src="https://drive.google.com/file/d/1wfEaecn2ddPCAtNL6pWnKzuOiYnb0AGI/preview"
+                  className="w-full h-full"
+                  allow="autoplay"
+                  style={{ border: 'none', pointerEvents: 'none' }}
                 />
               </div>
               {/* Available for Work Badge */}
