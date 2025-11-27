@@ -191,6 +191,23 @@ export default function Portfolio() {
   const [showResume, setShowResume] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [githubContributions, setGithubContributions] = useState(477);
+  const videoRef = React.useRef(null);
+
+  useEffect(() => {
+    // Ensure video plays on mount and after any pause
+    const video = videoRef.current;
+    if (video) {
+      video.play().catch(() => {
+        // Autoplay was prevented, try again on user interaction
+        document.addEventListener('click', () => video.play(), { once: true });
+      });
+      
+      // Force replay if video pauses
+      video.addEventListener('pause', () => {
+        video.play();
+      });
+    }
+  }, []);
 
   useEffect(() => {
     // Fetch GitHub contributions for the entire year
@@ -405,12 +422,19 @@ export default function Portfolio() {
             <div className="relative w-full aspect-square max-w-xl mx-auto">
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-cyan-500 blur-3xl opacity-20 animate-pulse"></div>
               <div className="relative aspect-square overflow-hidden border-4 border-white/10 shadow-2xl rounded-2xl">
-                <iframe
-                  src="https://drive.google.com/file/d/1wfEaecn2ddPCAtNL6pWnKzuOiYnb0AGI/preview"
-                  className="w-full h-full"
-                  allow="autoplay"
-                  style={{ border: 'none', pointerEvents: 'none' }}
-                />
+                <video
+                  ref={videoRef}
+                  className="w-full h-full object-cover"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="auto"
+                  style={{ pointerEvents: 'none' }}
+                >
+                  <source src="https://drive.google.com/uc?export=download&id=1wfEaecn2ddPCAtNL6pWnKzuOiYnb0AGI" type="video/quicktime" />
+                  <source src="/Profile_vid.mov" type="video/quicktime" />
+                </video>
               </div>
               {/* Available for Work Badge */}
               <motion.div
