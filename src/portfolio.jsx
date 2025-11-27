@@ -405,10 +405,12 @@ export default function Portfolio() {
             <div className="relative w-full aspect-square max-w-md mx-auto">
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-full blur-3xl opacity-20 animate-pulse"></div>
               <div className="relative rounded-full overflow-hidden border-4 border-white/10 shadow-2xl">
-                <img
-                  src="/profile.png"
-                  alt="Sahil Kumar"
-                  className="w-full h-full object-cover scale-110"
+                <video
+                  src="/Profile_vid.mov"
+                  className="w-full h-full object-contain"
+                  autoPlay
+                  loop
+                  muted
                 />
               </div>
               {/* Available for Work Badge */}
