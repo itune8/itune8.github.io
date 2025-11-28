@@ -606,7 +606,7 @@ export default function Portfolio() {
                   <source src="/Profile_vid.mov" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
-              </div>
+              </motion.div>
               {/* Available for Work Badge */}
               <motion.div
                 initial={{ opacity: 0, scale: 0 }}
