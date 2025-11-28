@@ -4,6 +4,33 @@ import { MapPin, FileDown, Github, Linkedin, ExternalLink, Mail, ArrowRight, Cod
 
 const accent = "from-[#7C3AED] via-[#4F46E5] to-[#06B6D4]";
 
+function FloatingParticles() {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {[...Array(20)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-1 h-1 bg-cyan-400/30 rounded-full"
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+          }}
+          animate={{
+            y: [0, -30, 0],
+            x: [0, Math.random() * 20 - 10, 0],
+            opacity: [0.2, 0.5, 0.2],
+          }}
+          transition={{
+            duration: 3 + Math.random() * 2,
+            repeat: Infinity,
+            delay: Math.random() * 2,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
 function Typewriter() {
   const roles = [
     "Front-End Engineer",
@@ -301,33 +328,68 @@ export default function Portfolio() {
             
             <div className="hidden md:flex items-center gap-8">
               {['Home', 'About', 'Experience', 'Projects', 'Skills', 'Contact'].map((item) => (
-                <button
+                <motion.button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
-                  className={`text-sm transition-colors ${
+                  className={`text-sm transition-colors relative ${
                     activeSection === item.toLowerCase()
                       ? 'text-white font-semibold'
                       : 'text-white/60 hover:text-white'
                   }`}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   {item}
-                </button>
+                  {activeSection === item.toLowerCase() && (
+                    <motion.div
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-500 to-cyan-500"
+                      layoutId="activeSection"
+                      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                    />
+                  )}
+                </motion.button>
               ))}
             </div>
 
             <div className="flex items-center gap-3">
-              <a href={ME.github} target="_blank" rel="noreferrer" className="p-2 rounded-lg hover:bg-white/5 transition-all">
+              <motion.a 
+                href={ME.github} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="p-2 rounded-lg hover:bg-white/5 transition-all"
+                whileHover={{ scale: 1.2, rotate: 360 }}
+                transition={{ duration: 0.6 }}
+              >
                 <Github className="w-5 h-5" />
-              </a>
-              <a href={ME.linkedin} target="_blank" rel="noreferrer" className="p-2 rounded-lg hover:bg-white/5 transition-all">
+              </motion.a>
+              <motion.a 
+                href={ME.linkedin} 
+                target="_blank" 
+                rel="noreferrer" 
+                className="p-2 rounded-lg hover:bg-white/5 transition-all"
+                whileHover={{ scale: 1.2, rotate: 360 }}
+                transition={{ duration: 0.6 }}
+              >
                 <Linkedin className="w-5 h-5" />
-              </a>
-              <button
+              </motion.a>
+              <motion.button
                 onClick={() => setShowResume(true)}
-                className={`px-4 py-2 rounded-lg bg-gradient-to-r ${accent} text-sm font-medium hover:opacity-90 transition-all`}
+                className={`px-4 py-2 rounded-lg bg-gradient-to-r ${accent} text-sm font-medium relative overflow-hidden`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                animate={{
+                  boxShadow: [
+                    '0 0 0 0 rgba(124, 58, 237, 0)',
+                    '0 0 0 10px rgba(124, 58, 237, 0)',
+                  ],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                }}
               >
                 Resume
-              </button>
+              </motion.button>
             </div>
           </div>
         </div>
@@ -348,6 +410,7 @@ export default function Portfolio() {
           }}
           style={{ backgroundSize: '200% 200%' }}
         />
+        <FloatingParticles />
         <div className="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -367,9 +430,22 @@ export default function Portfolio() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-5xl md:text-7xl font-bold mb-4"
+              className="text-5xl md:text-7xl font-bold mb-4 relative"
             >
-              {ME.name}
+              <motion.span
+                className="bg-gradient-to-r from-white via-cyan-200 to-purple-200 bg-clip-text text-transparent"
+                animate={{
+                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: 'linear',
+                }}
+                style={{ backgroundSize: '200% auto' }}
+              >
+                {ME.name}
+              </motion.span>
             </motion.h1>
             
             <motion.h2
@@ -439,19 +515,43 @@ export default function Portfolio() {
               className="mt-8"
             >
               <div className="flex flex-col gap-2">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm">
-                  <Github className="w-4 h-4 text-green-400" />
+                <motion.div 
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm cursor-pointer"
+                  whileHover={{ 
+                    scale: 1.05,
+                    borderColor: 'rgba(74, 222, 128, 0.5)',
+                    boxShadow: '0 0 20px rgba(74, 222, 128, 0.3)'
+                  }}
+                >
+                  <motion.div
+                    animate={{ rotate: [0, 360] }}
+                    transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+                  >
+                    <Github className="w-4 h-4 text-green-400" />
+                  </motion.div>
                   <span className="text-sm text-white/70">
                     <span className="font-semibold text-green-400">{githubContributions}</span> contributions this year
                   </span>
-                </div>
+                </motion.div>
                 
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm">
-                  <Linkedin className="w-4 h-4 text-blue-400" />
+                <motion.div 
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 backdrop-blur-sm cursor-pointer"
+                  whileHover={{ 
+                    scale: 1.05,
+                    borderColor: 'rgba(96, 165, 250, 0.5)',
+                    boxShadow: '0 0 20px rgba(96, 165, 250, 0.3)'
+                  }}
+                >
+                  <motion.div
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    <Linkedin className="w-4 h-4 text-blue-400" />
+                  </motion.div>
                   <span className="text-sm text-white/70">
                     <span className="font-semibold text-blue-400">5K+</span> post impressions
                   </span>
-                </div>
+                </motion.div>
               </div>
             </motion.div>
           </motion.div>
@@ -463,8 +563,34 @@ export default function Portfolio() {
             className="relative"
           >
             <div className="relative w-full aspect-square max-w-xl mx-auto">
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-cyan-500 blur-3xl opacity-20 animate-pulse"></div>
-              <div className="relative aspect-square overflow-hidden border-4 border-white/10 shadow-2xl rounded-2xl bg-black">
+              <motion.div 
+                className="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500 blur-3xl opacity-20"
+                animate={{
+                  rotate: 360,
+                  scale: [1, 1.1, 1],
+                }}
+                transition={{
+                  rotate: { duration: 20, repeat: Infinity, ease: 'linear' },
+                  scale: { duration: 4, repeat: Infinity },
+                }}
+              />
+              <motion.div 
+                className="relative aspect-square overflow-hidden shadow-2xl rounded-2xl bg-black"
+                style={{
+                  border: '4px solid transparent',
+                  backgroundImage: 'linear-gradient(#0B0F1A, #0B0F1A), linear-gradient(90deg, #7C3AED, #06B6D4, #7C3AED)',
+                  backgroundOrigin: 'border-box',
+                  backgroundClip: 'padding-box, border-box',
+                }}
+                animate={{
+                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: 'linear',
+                }}
+              >
                 <video
                   ref={videoRef}
                   className="w-full h-full object-cover"
@@ -516,28 +642,64 @@ export default function Portfolio() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-12 flex items-center gap-4">
-              <span className="text-cyan-400 font-mono text-2xl">01.</span>
-              About Me
-              <div className="flex-1 h-px bg-white/10 ml-4"></div>
+              <motion.span 
+                className="text-cyan-400 font-mono text-2xl"
+                whileHover={{ scale: 1.2, rotate: 360 }}
+                transition={{ duration: 0.6 }}
+              >01.</motion.span>
+              <motion.span
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+              >About Me</motion.span>
+              <motion.div 
+                className="flex-1 h-px bg-gradient-to-r from-white/10 via-cyan-500/50 to-transparent ml-4"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                style={{ transformOrigin: 'left' }}
+              />
             </h2>
 
             <div className="grid md:grid-cols-2 gap-12">
-              <div className="space-y-4 text-white/70 leading-relaxed">
-                <p>
+              <motion.div 
+                className="space-y-4 text-white/70 leading-relaxed"
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <motion.p
+                  whileHover={{ x: 5 }}
+                  className="p-4 rounded-lg hover:bg-white/5 transition-colors cursor-default"
+                >
                   I'm a passionate Front-End Engineer with a keen eye for detail and a love for creating 
-                  seamless user experiences. Currently working at <span className="text-purple-400 font-semibold">HyperBrain Labs</span>, 
+                  seamless user experiences. Currently working at <motion.span 
+                    className="text-purple-400 font-semibold"
+                    whileHover={{ scale: 1.05, display: 'inline-block' }}
+                  >HyperBrain Labs</motion.span>, 
                   I specialize in building responsive, performant web applications using modern technologies.
-                </p>
-                <p>
+                </motion.p>
+                <motion.p
+                  whileHover={{ x: 5 }}
+                  className="p-4 rounded-lg hover:bg-white/5 transition-colors cursor-default"
+                >
                   My journey in tech has been diverse - from developing full-stack applications to ensuring 
-                  quality through rigorous testing at <span className="text-blue-400 font-semibold">Josh Technology Group</span>. 
+                  quality through rigorous testing at <motion.span 
+                    className="text-blue-400 font-semibold"
+                    whileHover={{ scale: 1.05, display: 'inline-block' }}
+                  >Josh Technology Group</motion.span>. 
                   This unique combination gives me a holistic view of the development lifecycle.
-                </p>
-                <p>
+                </motion.p>
+                <motion.p
+                  whileHover={{ x: 5 }}
+                  className="p-4 rounded-lg hover:bg-white/5 transition-colors cursor-default"
+                >
                   I'm particularly interested in SaaS platforms, performance optimization, and creating 
                   intuitive user interfaces that solve real-world problems.
-                </p>
-              </div>
+                </motion.p>
+              </motion.div>
 
               <div className="grid grid-cols-2 gap-4">
                 {[
@@ -592,9 +754,24 @@ export default function Portfolio() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-12 flex items-center gap-4">
-              <span className="text-cyan-400 font-mono text-2xl">02.</span>
-              Work Experience
-              <div className="flex-1 h-px bg-white/10 ml-4"></div>
+              <motion.span 
+                className="text-cyan-400 font-mono text-2xl"
+                whileHover={{ scale: 1.2, rotate: 360 }}
+                transition={{ duration: 0.6 }}
+              >02.</motion.span>
+              <motion.span
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+              >Work Experience</motion.span>
+              <motion.div 
+                className="flex-1 h-px bg-gradient-to-r from-white/10 via-cyan-500/50 to-transparent ml-4"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                style={{ transformOrigin: 'left' }}
+              />
             </h2>
 
             <div className="space-y-12">
@@ -660,9 +837,24 @@ export default function Portfolio() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-12 flex items-center gap-4">
-              <span className="text-cyan-400 font-mono text-2xl">03.</span>
-              Featured Projects
-              <div className="flex-1 h-px bg-white/10 ml-4"></div>
+              <motion.span 
+                className="text-cyan-400 font-mono text-2xl"
+                whileHover={{ scale: 1.2, rotate: 360 }}
+                transition={{ duration: 0.6 }}
+              >03.</motion.span>
+              <motion.span
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+              >Featured Projects</motion.span>
+              <motion.div 
+                className="flex-1 h-px bg-gradient-to-r from-white/10 via-cyan-500/50 to-transparent ml-4"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                style={{ transformOrigin: 'left' }}
+              />
             </h2>
 
             <div className="grid md:grid-cols-2 gap-6">
@@ -703,12 +895,22 @@ export default function Portfolio() {
                   
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag, i) => (
-                      <span
+                      <motion.span
                         key={i}
-                        className="px-3 py-1 rounded-full bg-white/5 text-xs text-cyan-400 border border-white/10"
+                        className="px-3 py-1 rounded-full bg-white/5 text-xs text-cyan-400 border border-white/10 cursor-pointer"
+                        initial={{ opacity: 0, scale: 0 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.05 }}
+                        whileHover={{ 
+                          scale: 1.15,
+                          rotateY: 180,
+                          backgroundColor: 'rgba(6, 182, 212, 0.3)',
+                          borderColor: 'rgba(6, 182, 212, 0.8)'
+                        }}
                       >
                         {tag}
-                      </span>
+                      </motion.span>
                     ))}
                   </div>
                 </motion.div>
@@ -728,9 +930,24 @@ export default function Portfolio() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-12 flex items-center gap-4">
-              <span className="text-cyan-400 font-mono text-2xl">04.</span>
-              Skills & Technologies
-              <div className="flex-1 h-px bg-white/10 ml-4"></div>
+              <motion.span 
+                className="text-cyan-400 font-mono text-2xl"
+                whileHover={{ scale: 1.2, rotate: 360 }}
+                transition={{ duration: 0.6 }}
+              >04.</motion.span>
+              <motion.span
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+              >Skills & Technologies</motion.span>
+              <motion.div 
+                className="flex-1 h-px bg-gradient-to-r from-white/10 via-cyan-500/50 to-transparent ml-4"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                style={{ transformOrigin: 'left' }}
+              />
             </h2>
 
             <div className="grid md:grid-cols-2 gap-8">
