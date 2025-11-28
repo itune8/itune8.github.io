@@ -334,8 +334,21 @@ export default function Portfolio() {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center px-6 pt-20">
-        <div className="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center">
+      <section id="home" className="min-h-screen flex items-center justify-center px-6 pt-20 relative overflow-hidden">
+        {/* Animated background gradient */}
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-transparent to-cyan-900/20"
+          animate={{
+            backgroundPosition: ['0% 0%', '100% 100%'],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            repeatType: 'reverse',
+          }}
+          style={{ backgroundSize: '200% 200%' }}
+        />
+        <div className="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -393,19 +406,29 @@ export default function Portfolio() {
               transition={{ delay: 0.7 }}
               className="flex gap-4"
             >
-              <button
+              <motion.button
                 onClick={() => scrollToSection('projects')}
-                className={`px-6 py-3 rounded-lg bg-gradient-to-r ${accent} font-medium hover:opacity-90 transition-all flex items-center gap-2`}
+                className={`px-6 py-3 rounded-lg bg-gradient-to-r ${accent} font-medium transition-all flex items-center gap-2 relative overflow-hidden group`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                View My Work
-                <ArrowRight className="w-4 h-4" />
-              </button>
-              <button
+                <span className="relative z-10">View My Work</span>
+                <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
+                <motion.div
+                  className="absolute inset-0 bg-white/20"
+                  initial={{ x: '-100%' }}
+                  whileHover={{ x: '100%' }}
+                  transition={{ duration: 0.5 }}
+                />
+              </motion.button>
+              <motion.button
                 onClick={() => scrollToSection('contact')}
-                className="px-6 py-3 rounded-lg border border-white/20 hover:bg-white/5 transition-all"
+                className="px-6 py-3 rounded-lg border border-white/20 hover:bg-white/5 transition-all relative overflow-hidden group"
+                whileHover={{ scale: 1.05, borderColor: 'rgba(255,255,255,0.4)' }}
+                whileTap={{ scale: 0.95 }}
               >
                 Get In Touch
-              </button>
+              </motion.button>
             </motion.div>
 
             {/* GitHub & LinkedIn Stats */}
@@ -529,10 +552,24 @@ export default function Portfolio() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    className="p-6 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all"
+                    whileHover={{ 
+                      scale: 1.05, 
+                      borderColor: 'rgba(6, 182, 212, 0.5)',
+                      boxShadow: '0 0 20px rgba(6, 182, 212, 0.3)'
+                    }}
+                    className="p-6 rounded-xl bg-white/5 border border-white/10 transition-all cursor-pointer group"
                   >
-                    <stat.icon className="w-8 h-8 text-cyan-400 mb-3" />
-                    <div className="text-2xl font-bold mb-1">{stat.value}</div>
+                    <motion.div
+                      whileHover={{ rotate: 360, scale: 1.2 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <stat.icon className="w-8 h-8 text-cyan-400 mb-3" />
+                    </motion.div>
+                    <motion.div 
+                      className="text-2xl font-bold mb-1"
+                      initial={{ scale: 1 }}
+                      whileHover={{ scale: 1.1 }}
+                    >{stat.value}</motion.div>
                     <div className="text-sm text-white/60">{stat.label}</div>
                     {stat.subtitle && (
                       <div className="text-xs text-white/40 mt-1">{stat.subtitle}</div>
@@ -567,10 +604,21 @@ export default function Portfolio() {
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="relative pl-8 border-l-2 border-white/10 hover:border-cyan-400/50 transition-all"
+                  transition={{ delay: index * 0.1, type: 'spring', stiffness: 100 }}
+                  whileHover={{ x: 10, transition: { duration: 0.3 } }}
+                  className="relative pl-8 border-l-2 border-white/10 hover:border-cyan-400/50 transition-all group"
                 >
-                  <div className={`absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-gradient-to-r ${exp.color}`}></div>
+                  <motion.div 
+                    className={`absolute left-[-9px] top-0 w-4 h-4 rounded-full bg-gradient-to-r ${exp.color}`}
+                    whileHover={{ scale: 1.5 }}
+                    animate={{ 
+                      boxShadow: [
+                        '0 0 0 0 rgba(124, 58, 237, 0.7)',
+                        '0 0 0 10px rgba(124, 58, 237, 0)',
+                      ]
+                    }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  ></motion.div>
                   
                   <div className="mb-2 flex flex-wrap items-center gap-3">
                     <h3 className="text-2xl font-bold">{exp.position}</h3>
@@ -626,13 +674,28 @@ export default function Portfolio() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                   onClick={() => setActiveProject(project)}
-                  className={`group relative p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-cyan-400/50 transition-all cursor-pointer ${
+                  whileHover={{ 
+                    y: -10,
+                    scale: 1.02,
+                    boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)',
+                    borderColor: 'rgba(6, 182, 212, 0.5)'
+                  }}
+                  className={`group relative p-6 rounded-2xl bg-white/5 border border-white/10 transition-all cursor-pointer ${
                     project.featured ? 'md:col-span-2' : ''
                   }`}
                 >
                   <div className="flex items-start justify-between mb-4">
-                    <div className="text-4xl">{project.icon}</div>
-                    <ExternalLink className="w-5 h-5 text-white/40 group-hover:text-cyan-400 transition-colors" />
+                    <motion.div 
+                      className="text-4xl"
+                      whileHover={{ scale: 1.2, rotate: 10 }}
+                      transition={{ type: 'spring', stiffness: 300 }}
+                    >{project.icon}</motion.div>
+                    <motion.div
+                      whileHover={{ scale: 1.2, rotate: 45 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <ExternalLink className="w-5 h-5 text-white/40 group-hover:text-cyan-400 transition-colors" />
+                    </motion.div>
                   </div>
                   
                   <h3 className="text-2xl font-bold mb-3">{project.title}</h3>
@@ -678,17 +741,31 @@ export default function Portfolio() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
+                  whileHover={{ 
+                    scale: 1.03,
+                    borderColor: 'rgba(6, 182, 212, 0.4)',
+                    boxShadow: '0 10px 30px rgba(6, 182, 212, 0.2)'
+                  }}
                   className="p-6 rounded-2xl bg-white/5 border border-white/10"
                 >
                   <h3 className="text-xl font-bold mb-4 text-cyan-400">{category}</h3>
                   <div className="flex flex-wrap gap-2">
                     {items.map((skill, i) => (
-                      <span
+                      <motion.span
                         key={i}
-                        className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm hover:bg-white/10 hover:border-cyan-400/50 transition-all"
+                        initial={{ opacity: 0, scale: 0 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.05 }}
+                        whileHover={{ 
+                          scale: 1.1, 
+                          backgroundColor: 'rgba(6, 182, 212, 0.2)',
+                          borderColor: 'rgba(6, 182, 212, 0.8)'
+                        }}
+                        className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-sm transition-all cursor-pointer"
                       >
                         {skill}
-                      </span>
+                      </motion.span>
                     ))}
                   </div>
                 </motion.div>
@@ -715,22 +792,32 @@ export default function Portfolio() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-              <a
+              <motion.a
                 href={`mailto:${ME.email}`}
-                className="px-8 py-4 rounded-lg bg-gradient-to-r from-purple-500 to-cyan-500 font-medium hover:opacity-90 transition-all flex items-center gap-2"
+                className="px-8 py-4 rounded-lg bg-gradient-to-r from-purple-500 to-cyan-500 font-medium transition-all flex items-center gap-2 relative overflow-hidden group"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <Mail className="w-5 h-5" />
-                Send Email
-              </a>
-              <a
+                <Mail className="w-5 h-5 relative z-10" />
+                <span className="relative z-10">Send Email</span>
+                <motion.div
+                  className="absolute inset-0 bg-white/20"
+                  initial={{ x: '-100%' }}
+                  whileHover={{ x: '100%' }}
+                  transition={{ duration: 0.5 }}
+                />
+              </motion.a>
+              <motion.a
                 href={ME.linkedin}
                 target="_blank"
                 rel="noreferrer"
                 className="px-8 py-4 rounded-lg border border-white/20 hover:bg-white/5 transition-all flex items-center gap-2"
+                whileHover={{ scale: 1.05, borderColor: 'rgba(255,255,255,0.4)' }}
+                whileTap={{ scale: 0.95 }}
               >
                 <Linkedin className="w-5 h-5" />
                 LinkedIn
-              </a>
+              </motion.a>
             </div>
 
             <div className="flex items-center justify-center gap-6">
