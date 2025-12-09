@@ -84,7 +84,7 @@ const ME = {
   name: "Sahil Kumar",
   role: "Front-End Engineer & QA Specialist",
   tagline: "Building exceptional digital experiences with precision and creativity",
-  location: "Gurugram, Haryana",
+  location: "Dubai, United Arab Emirates",
   email: "sahilgulmohur@gmail.com",
   github: "https://github.com/itune8",
   linkedin: "https://www.linkedin.com/in/sahils90/",
@@ -94,10 +94,25 @@ const ME = {
 const experiences = [
   {
     id: 1,
+    company: "Blend",
+    position: "Frontend Engineer",
+    type: "Full-time",
+    duration: "Dec 2025 - Present",
+    location: "Dubai, UAE (Remote)",
+    description: [
+      "Actively contributing to building Blend as a highly scalable, product-first platform",
+      "Working across React, Next.js, and modern frontend architecture to deliver fast, reliable, and intuitive experiences",
+      "Optimizing performance, refining user flows, and collaborating beyond the frontend whenever needed",
+      "Expanding into backend APIs, authentication systems, and cloud deployment to support Blend's long-term scalability and technical growth"
+    ],
+    color: "from-blue-400 to-cyan-400"
+  },
+  {
+    id: 2,
     company: "HyperBrain Labs",
     position: "FrontEnd Developer",
     type: "Internship",
-    duration: "Oct 2025 - Present",
+    duration: "Oct 2025 - Dec 2025",
     location: "Bengaluru",
     description: [
       "Developed and maintained responsive front-end interfaces using React, JavaScript, and CSS improving overall UI performance by 30%",
@@ -107,7 +122,7 @@ const experiences = [
     color: "from-purple-500 to-pink-500"
   },
   {
-    id: 2,
+    id: 3,
     company: "Josh Technology Group",
     position: "Software Test Engineer",
     type: "Internship",
@@ -122,7 +137,7 @@ const experiences = [
     color: "from-blue-500 to-cyan-500"
   },
   {
-    id: 3,
+    id: 4,
     company: "PwC",
     position: "Salesforce Cloud Trainee",
     type: "Apprentenship",
@@ -135,7 +150,7 @@ const experiences = [
     color: "from-orange-500 to-red-500"
   },
   {
-    id: 4,
+    id: 5,
     company: "Showera",
     position: "Web Developer",
     type: "Internship",
@@ -149,7 +164,7 @@ const experiences = [
     color: "from-green-500 to-emerald-500"
   },
   {
-    id: 5,
+    id: 6,
     company: "TailUX",
     position: "FrontEnd Developer",
     type: "Internship",
@@ -676,9 +691,9 @@ export default function Portfolio() {
                 >
                   I'm a passionate Front-End Engineer with a keen eye for detail and a love for creating 
                   seamless user experiences. Currently working at <motion.span 
-                    className="text-purple-400 font-semibold"
+                    className="text-cyan-400 font-semibold"
                     whileHover={{ scale: 1.05, display: 'inline-block' }}
-                  >HyperBrain Labs</motion.span>, 
+                  >Blend (Dubai)</motion.span>, 
                   I specialize in building responsive, performant web applications using modern technologies.
                 </motion.p>
                 <motion.p
@@ -686,11 +701,14 @@ export default function Portfolio() {
                   className="p-4 rounded-lg hover:bg-white/5 transition-colors cursor-default"
                 >
                   My journey in tech has been diverse - from developing full-stack applications to ensuring 
-                  quality through rigorous testing at <motion.span 
+                  quality through rigorous testing. Previously at <motion.span 
+                    className="text-purple-400 font-semibold"
+                    whileHover={{ scale: 1.05, display: 'inline-block' }}
+                  >HyperBrain Labs</motion.span> and <motion.span 
                     className="text-blue-400 font-semibold"
                     whileHover={{ scale: 1.05, display: 'inline-block' }}
-                  >Josh Technology Group</motion.span>. 
-                  This unique combination gives me a holistic view of the development lifecycle.
+                  >Josh Technology Group</motion.span>, 
+                  this unique combination gives me a holistic view of the development lifecycle.
                 </motion.p>
                 <motion.p
                   whileHover={{ x: 5 }}
