@@ -579,7 +579,7 @@ export default function Portfolio() {
                   x-webkit-airplay="allow"
                   style={{ pointerEvents: 'none' }}
                 >
-                  <source src="/Profile_vid.mov" type="video/mp4" />
+                  <source src="https://drive.google.com/uc?export=download&id=18wZzMODQs3kc6CSbW8uK3-LG7hlWqUFH" type="video/mp4" />
                   Your browser does not support the video tag.
                 </video>
               </motion.div>
