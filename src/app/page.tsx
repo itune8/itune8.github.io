@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   MapPin,
@@ -246,6 +246,7 @@ export default function Portfolio() {
   const [showResume, setShowResume] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [githubContributions, setGithubContributions] = useState(477);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const fetchGithubStats = async () => {
@@ -293,6 +294,23 @@ export default function Portfolio() {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Ensure video plays on mobile
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.play().catch(() => {
+        // Autoplay was prevented, try playing on user interaction
+        const playOnInteraction = () => {
+          video.play();
+          document.removeEventListener('touchstart', playOnInteraction);
+          document.removeEventListener('click', playOnInteraction);
+        };
+        document.addEventListener('touchstart', playOnInteraction);
+        document.addEventListener('click', playOnInteraction);
+      });
+    }
   }, []);
 
   return (
@@ -550,12 +568,15 @@ export default function Portfolio() {
                 }}
               >
                 <video
+                  ref={videoRef}
                   className="w-full h-full object-cover"
                   autoPlay
                   loop
                   muted
                   playsInline
                   preload="auto"
+                  webkit-playsinline="true"
+                  x-webkit-airplay="allow"
                   style={{ pointerEvents: 'none' }}
                 >
                   <source src="/Profile_vid.mov" type="video/mp4" />
