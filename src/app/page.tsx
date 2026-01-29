@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   MapPin,
@@ -246,7 +246,6 @@ export default function Portfolio() {
   const [showResume, setShowResume] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [githubContributions, setGithubContributions] = useState(477);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const fetchGithubStats = async () => {
@@ -296,22 +295,6 @@ export default function Portfolio() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Ensure video plays on mobile
-  useEffect(() => {
-    const video = videoRef.current;
-    if (video) {
-      video.play().catch(() => {
-        // Autoplay was prevented, try playing on user interaction
-        const playOnInteraction = () => {
-          video.play();
-          document.removeEventListener('touchstart', playOnInteraction);
-          document.removeEventListener('click', playOnInteraction);
-        };
-        document.addEventListener('touchstart', playOnInteraction);
-        document.addEventListener('click', playOnInteraction);
-      });
-    }
-  }, []);
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -538,7 +521,7 @@ export default function Portfolio() {
             transition={{ delay: 0.5, duration: 0.8 }}
             className="relative flex-1"
           >
-            <div className="relative w-full aspect-square max-w-xl mx-auto">
+            <div className="relative w-full aspect-square max-w-2xl mx-auto">
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500 blur-3xl opacity-20"
                 animate={{
@@ -567,21 +550,12 @@ export default function Portfolio() {
                   ease: 'linear',
                 }}
               >
-                <video
-                  ref={videoRef}
-                  className="w-full h-full object-cover"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="auto"
-                  webkit-playsinline="true"
-                  x-webkit-airplay="allow"
-                  style={{ pointerEvents: 'none' }}
-                >
-                  <source src="/Profile_vid.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
+                <iframe
+                  src="https://drive.google.com/file/d/1jQdHm5H_kaS5ucFuxqSmPYoY_pZPk9-p/preview"
+                  className="w-full h-full"
+                  allow="autoplay"
+                  style={{ border: 'none' }}
+                />
               </motion.div>
               {/* Available for Work Badge */}
               <motion.div
