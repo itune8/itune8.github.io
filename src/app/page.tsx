@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   MapPin,
@@ -246,6 +246,7 @@ export default function Portfolio() {
   const [showResume, setShowResume] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [githubContributions, setGithubContributions] = useState(477);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const fetchGithubStats = async () => {
@@ -295,6 +296,21 @@ export default function Portfolio() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Ensure video plays on mobile
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.play().catch(() => {
+        const playOnInteraction = () => {
+          video.play();
+          document.removeEventListener('touchstart', playOnInteraction);
+          document.removeEventListener('click', playOnInteraction);
+        };
+        document.addEventListener('touchstart', playOnInteraction);
+        document.addEventListener('click', playOnInteraction);
+      });
+    }
+  }, []);
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -550,12 +566,21 @@ export default function Portfolio() {
                   ease: 'linear',
                 }}
               >
-                <iframe
-                  src="https://drive.google.com/file/d/1jQdHm5H_kaS5ucFuxqSmPYoY_pZPk9-p/preview"
-                  className="w-full h-full"
-                  allow="autoplay"
-                  style={{ border: 'none' }}
-                />
+                <video
+                  ref={videoRef}
+                  className="w-full h-full object-cover"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="auto"
+                  webkit-playsinline="true"
+                  x-webkit-airplay="allow"
+                  style={{ pointerEvents: 'none' }}
+                >
+                  <source src="https://drive.google.com/uc?export=download&id=1jQdHm5H_kaS5ucFuxqSmPYoY_pZPk9-p" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
               </motion.div>
               {/* Available for Work Badge */}
               <motion.div
