@@ -215,25 +215,35 @@ function Typewriter() {
 }
 
 function FloatingParticles() {
+  const particles = [
+    { left: 5, top: 10 }, { left: 15, top: 80 }, { left: 25, top: 30 },
+    { left: 35, top: 60 }, { left: 45, top: 20 }, { left: 55, top: 90 },
+    { left: 65, top: 40 }, { left: 75, top: 70 }, { left: 85, top: 15 },
+    { left: 95, top: 50 }, { left: 10, top: 45 }, { left: 20, top: 75 },
+    { left: 30, top: 25 }, { left: 40, top: 85 }, { left: 50, top: 55 },
+    { left: 60, top: 35 }, { left: 70, top: 65 }, { left: 80, top: 5 },
+    { left: 90, top: 95 }, { left: 12, top: 52 },
+  ];
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {[...Array(20)].map((_, i) => (
+      {particles.map((pos, i) => (
         <motion.div
           key={i}
           className="absolute w-1 h-1 bg-cyan-400/30 rounded-full"
           style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
+            left: `${pos.left}%`,
+            top: `${pos.top}%`,
           }}
           animate={{
             y: [0, -30, 0],
-            x: [0, Math.random() * 20 - 10, 0],
+            x: [0, (i % 5) * 4 - 10, 0],
             opacity: [0.2, 0.5, 0.2],
           }}
           transition={{
-            duration: 3 + Math.random() * 2,
+            duration: 3 + (i % 3),
             repeat: Infinity,
-            delay: Math.random() * 2,
+            delay: (i % 4) * 0.5,
           }}
         />
       ))}
@@ -245,29 +255,25 @@ export default function Portfolio() {
   const [activeProject, setActiveProject] = useState<typeof projects[0] | null>(null);
   const [showResume, setShowResume] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-  const [githubContributions, setGithubContributions] = useState(477);
+  const [githubContributions, setGithubContributions] = useState(3031);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const fetchGithubStats = async () => {
       try {
         const username = 'itune8';
-        const year = new Date().getFullYear();
-        const response = await fetch(`https://github-contributions-api.jogruber.de/v4/${username}?y=${year}`);
+        const response = await fetch(`https://github-contributions-api.jogruber.de/v4/${username}`);
         const data = await response.json();
-        if (data && data.total && data.total[year]) {
-          setGithubContributions(data.total[year]);
-        } else {
-          setGithubContributions(461);
+        if (data && data.total) {
+          const totalContributions = Object.values(data.total).reduce((sum: number, count) => sum + (count as number), 0);
+          setGithubContributions(totalContributions);
         }
       } catch {
-        setGithubContributions(461);
+        // Keep default value on error
       }
     };
 
     fetchGithubStats();
-    const interval = setInterval(fetchGithubStats, 30 * 60 * 1000);
-    return () => clearInterval(interval);
   }, []);
 
   const scrollToSection = (sectionId: string) => {
@@ -506,7 +512,7 @@ export default function Portfolio() {
                   <Github className="w-4 h-4 text-green-400" />
                 </motion.div>
                 <span className="text-sm text-white/70">
-                  <span className="font-semibold text-green-400">{githubContributions}</span> contributions this year
+                  <span className="font-semibold text-green-400">{githubContributions}</span> total contributions
                 </span>
               </motion.div>
 
