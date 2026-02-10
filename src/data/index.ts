@@ -5,7 +5,7 @@ export const ME = {
   location: "Bengaluru",
   email: "sahilgulmohur@gmail.com",
   github: "https://github.com/itune8",
-  linkedin: "https://www.linkedin.com/in/sahilsl90/",
+  linkedin: "https://www.linkedin.com/in/sahils90/",
   resume: "https://drive.google.com/file/d/14y1KjBz4qg8VQmTq0FEdxL81vU1UJ7Bc/preview",
 };
 

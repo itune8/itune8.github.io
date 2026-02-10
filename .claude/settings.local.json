@@ -16,7 +16,9 @@
       "Bash(cat:*)",
       "Bash(xargs:*)",
       "Bash(curl:*)",
-      "Bash(# Try using screenshot API service for each project cd /Users/mac/sahil-portfolio/public/projects # AllowBox curl -L -o allowbox.jpg \"\"https://api.microlink.io/?url=https://allow-box-frontend-web.vercel.app/&screenshot=true&meta=false&embed=screenshot.url\"\")"
+      "Bash(# Try using screenshot API service for each project cd /Users/mac/sahil-portfolio/public/projects # AllowBox curl -L -o allowbox.jpg \"\"https://api.microlink.io/?url=https://allow-box-frontend-web.vercel.app/&screenshot=true&meta=false&embed=screenshot.url\"\")",
+      "Bash(pkill:*)",
+      "Bash(lsof:*)"
     ]
   }
 }
