@@ -201,7 +201,7 @@ export function Hero({ githubContributions }: HeroProps) {
                 >
                   <Linkedin className="w-4 h-4 text-blue-400" />
                   <span className="text-white/70">
-                    <span className="font-semibold text-blue-400">5K+</span> impressions
+                    <span className="font-semibold text-blue-400">120K+</span> impressions
                   </span>
                 </a>
               </motion.div>
