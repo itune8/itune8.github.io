@@ -30,7 +30,7 @@ export function About() {
           <RevealAnimation delay={0.1}>
             <div className="space-y-4 text-white/70 leading-relaxed">
               <p>
-                I'm a passionate Front-End Engineer with a keen eye for detail and a love for creating
+                I'm a passionate Product Engineer with a keen eye for detail and a love for creating
                 seamless user experiences. Currently working at{" "}
                 <span className="text-accent font-medium">Blend (Dubai - Remote)</span>, I specialize in
                 building responsive, performant web applications using modern technologies.

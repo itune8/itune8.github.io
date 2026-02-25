@@ -32,7 +32,7 @@ export function Contact() {
         <RevealAnimation delay={0.2}>
           <ProfileCard
             name={ME.name}
-            role="Front-End Engineer & QA Specialist"
+            role="Product Engineer & QA Specialist"
             email={ME.email}
             avatarSrc="/profile.jpg"
             statusText="Available for work"

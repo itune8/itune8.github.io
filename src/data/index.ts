@@ -1,12 +1,12 @@
 export const ME = {
   name: "Sahil Kumar",
-  role: "Front-End Engineer & QA Specialist",
+  role: "Product Engineer & QA Specialist",
   tagline: "Building exceptional digital experiences with precision and creativity",
   location: "Bengaluru",
   email: "sahilgulmohur@gmail.com",
   github: "https://github.com/itune8",
   linkedin: "https://www.linkedin.com/in/sahils90/",
-  resume: "https://drive.google.com/file/d/14y1KjBz4qg8VQmTq0FEdxL81vU1UJ7Bc/preview",
+  resume: "https://drive.google.com/file/d/1qBbpNGWBBRRFeIYI3fiTLIaQuE6RKKt5/preview",
 };
 
 export const experiences = [
@@ -104,13 +104,12 @@ export const projects = [
   },
   {
     id: 2,
-    title: "Stutor",
-    description: "Peer-to-peer student learning platform with sessions, reviews, smart matching, and crisp UI for seamless educational experiences.",
-    tags: ["React", "Node.js", "PostgreSQL"],
-    icon: "🎓",
-    video: "https://drive.google.com/file/d/1_2AF-FgEk8S0ZbrVo7v8mBoRIZyEgNez/preview",
-    link: "https://stutor.vercel.app",
-    image: "/projects/Stutor.png",
+    title: "SwiftPatch",
+    description: "The mobile deployment platform for React Native teams. Push deployments instantly, roll back in seconds, and monitor every release. Like Vercel, but for mobile.",
+    tags: ["React Native", "Deployment", "CI/CD", "SaaS"],
+    icon: "🚀",
+    link: "https://swiftpatch.io",
+    image: "/projects/Swift_patch.png",
     featured: true
   },
   {
@@ -144,14 +143,14 @@ export const skills = {
 };
 
 export const typewriterRoles = [
-  "Front-End Engineer",
-  "Test Automation Engineer",
-  "Adept Team Player"
+  "Product Engineer",
+  "Scalable Systems",
+  "Test Automation Engineer"
 ];
 
 export const stats = {
   githubContributionsFallback: 3031,
-  linkedInImpressions: "5K+",
+  linkedInImpressions: "120K+",
   yearsExperience: "1+",
   projectsCount: "5+",
   hackathons: "3× Winner",
@@ -163,7 +162,7 @@ export const stats = {
 export const aboutContent = {
   paragraphs: [
     {
-      text: "I'm a passionate Front-End Engineer with a keen eye for detail and a love for creating seamless user experiences.",
+      text: "I'm a passionate Product Engineer with a keen eye for detail and a love for creating seamless user experiences.",
       highlight: { text: "Blend (Dubai - Remote)", color: "accent" }
     },
     {

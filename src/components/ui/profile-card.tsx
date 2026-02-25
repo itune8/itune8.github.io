@@ -22,7 +22,7 @@ interface ProfileCardProps {
 
 export function ProfileCard({
   name = "Sahil Kumar",
-  role = "Front-End Engineer & QA Specialist",
+  role = "Product Engineer & QA Specialist",
   email = "sahilgulmohur@gmail.com",
   avatarSrc = "/Profile_vid.mp4",
   statusText = "Available for work",
